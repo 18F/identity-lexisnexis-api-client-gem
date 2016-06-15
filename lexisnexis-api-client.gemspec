@@ -26,7 +26,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency('dotenv')
   s.add_dependency('hashie')
-  s.add_dependency('xml-simple')
   s.add_dependency('savon')
   s.add_dependency('logger')
 
