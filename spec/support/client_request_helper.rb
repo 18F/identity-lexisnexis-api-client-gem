@@ -1,10 +1,14 @@
-module ClientRequentHelper
+require 'csv'
+require 'lexisnexis/applicant'
+
+module ClientRequestHelper
   def all_applicants
     applicants = []
     row_count = 0
     CSV.foreach(ENV['LEXISNEXIS_TEST_CASES']) do |row|
       row_count += 1
       ssn = row[2]
+      next unless ssn =~ /^\d+$/
       if ENV['USE_ROWS'] && !ENV['USE_ROWS'].split(/,/).include?(row_count.to_s)
         next
       end

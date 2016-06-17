@@ -3,7 +3,7 @@ require 'hashie/mash'
 module LexisNexis
   class Applicant < Hashie::Mash
     def self.from_proofer_applicant(applicant)
-      self.new(
+      new(
         first_name: applicant.first_name,
         last_name: applicant.last_name,
         ssn: applicant.ssn,
