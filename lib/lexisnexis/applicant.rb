@@ -1,3 +1,4 @@
+require 'date'
 require 'hashie/mash'
 
 module LexisNexis
@@ -7,11 +8,7 @@ module LexisNexis
         first_name: applicant.first_name,
         last_name: applicant.last_name,
         ssn: applicant.ssn,
-        dob: {
-          year: applicant.dob.slice(0, 4),
-          month: applicant.dob.slice(4, 2),
-          day: applicant.dob.slice(6, 2)
-        },
+        dob: self.format_dob(applicant.dob),
         phone: applicant.phone,
         address: {
           line_1: applicant.address1,
@@ -21,6 +18,17 @@ module LexisNexis
           zip_code: applicant.zipcode
         }
       )
+    end
+
+    def self.format_dob(dob)
+      if dob.nil? || dob == ''
+        { year: '', month: '', day: '' }
+      elsif dob =~ /^\d+$/
+        { year: dob.slice(0, 4), month: dob.slice(4, 2), day: dob.slice(6, 2) }
+      else
+        date = Date.parse(dob)
+        { year: date.year, month: date.month, day: date.day }
+      end
     end
   end
 end
