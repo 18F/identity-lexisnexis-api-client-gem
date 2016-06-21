@@ -92,8 +92,13 @@ module Proofer
       end
       private :client
 
+      def verify_threshold
+        ENV['LEXISNEXIS_VERIFY_THRESHOLD'] || options[:verify_threshold]
+      end
+      private :verify_threshold
+
       def verify_flow_success?(resp)
-        if options[:verify_threshold]
+        if verify_threshold
           meets_verify_threshold?(resp)
         else
           resp.status != 'FAIL'
@@ -119,7 +124,7 @@ module Proofer
             end
           end
         end
-        n_checks.fdiv(n_passes) >= options[:verify_threshold]
+        n_checks.fdiv(n_passes) >= verify_threshold.to_f
       end
       private :meets_verify_threshold?
 
