@@ -16,6 +16,10 @@ module LexisNexis
           city: applicant.city,
           state: applicant.state,
           zip_code: applicant.zipcode
+        },
+        drivers_license: {
+          number: applicant.drivers_license_id,
+          state: applicant.drivers_license_state
         }
       )
     end
