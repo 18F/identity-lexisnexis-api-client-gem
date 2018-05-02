@@ -6,10 +6,7 @@ module LexisNexis
   class RequestError < StandardError; end
 
   class Request
-    attr_reader :attributes
-    attr_reader :url
-    attr_reader :headers
-    attr_reader :body
+    attr_reader :attributes, :url, :headers, :body
 
     def initialize(attributes)
       @attributes = attributes
@@ -19,9 +16,9 @@ module LexisNexis
     end
 
     def send
-      response = Typhoeus.post(url, body: body, headers: headers)
-      handle_unexpected_http_status_code_error(response)
-      Response.new(response.body)
+      Response.new(
+        Typhoeus.post(url, body: body, headers: headers)
+      )
     end
 
     private
@@ -51,12 +48,6 @@ module LexisNexis
       Base64.strict_encode64(
         "#{ENV.fetch('LEXISNEXIS_USERNAME')}:#{ENV.fetch('LEXISNEXIS_PASSWORD')}"
       )
-    end
-
-    def handle_unexpected_http_status_code_error(response)
-      return if response.success?
-      message = "Unexpected status code '#{response.code}': #{response.body}"
-      raise RequestError, message
     end
 
     def mode

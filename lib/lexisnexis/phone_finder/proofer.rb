@@ -10,6 +10,10 @@ module LexisNexis
 
       stage :address
 
+      proof do |applicant, result|
+        proof_applicant(applicant, result)
+      end
+
       def send_verifcation_request(applicant)
         VerificationRequest.new(applicant).send
       end

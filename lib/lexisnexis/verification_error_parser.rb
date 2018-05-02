@@ -21,13 +21,11 @@ module LexisNexis
     def product_error_messages
       products = body['Products']
       return { products: 'Products missing from response' } if products.nil?
-      error_messages = {}
-      products.each do |product|
+      products.each_with_object({}) do |product, error_messages|
         next if product['ProductStatus'] == 'pass'
         key = product.fetch('ExecutedStepName').to_sym
         error_messages[key] = product.to_json
       end
-      error_messages
     end
   end
 end
