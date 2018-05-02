@@ -1,7 +1,7 @@
 module LexisNexis
   class Proofer < Proofer::Base
     def proof_applicant(applicant, result)
-      response = send_verifcation_request(applicant)
+      response = send_verification_request(applicant)
       return if response.verification_status == 'passed'
       response.verification_errors.each do |key, error_message|
         result.add_error(key, error_message)
@@ -10,7 +10,7 @@ module LexisNexis
 
     private
 
-    def send_verifcation_request
+    def send_verification_request
       raise NotImplementedError, "#{__method__} should be defined by a subclass"
     end
   end

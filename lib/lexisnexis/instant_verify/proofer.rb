@@ -13,7 +13,7 @@ module LexisNexis
         proof_applicant(applicant, result)
       end
 
-      def send_verifcation_request(applicant)
+      def send_verification_request(applicant)
         VerificationRequest.new(applicant).send
       end
     end
