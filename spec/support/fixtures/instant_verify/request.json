@@ -1,0 +1,22 @@
+{
+  "Settings": {
+    "Workflow": "BK_IDM_WF",
+    "Mode": "testing",
+    "Reference": "1234-abcd"
+  },
+  "Person": {
+    "Name": {
+      "FirstName": "Johnathan",
+      "LastName": "Cooper"
+    },
+    "SSN": {
+      "Number": "123456789",
+      "Type": "ssn9"
+    },
+    "DateOfBirth": {
+      "Year": "1980",
+      "Month": "1",
+      "Day": "1"
+    }
+  }
+}
