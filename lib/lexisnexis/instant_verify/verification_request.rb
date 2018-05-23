@@ -30,10 +30,6 @@ module LexisNexis
         }.to_json
       end
 
-      def url_request_path
-        "/restws/identity/v2/#{account_number}/customers.gsa.instant.verify.workflow/conversation"
-      end
-
       def workflow_name
         ENV.fetch('LEXISNEXIS_INSTANT_VERIFY_WORKFLOW')
       end
