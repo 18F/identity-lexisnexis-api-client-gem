@@ -6,9 +6,11 @@ module LexisNexis
       def build_request_body # rubocop:disable Metrics/MethodLength
         {
           Settings: {
-            Workflow: 'PhoneFinder_WF',
+            AccountNumber: account_number,
             Mode: mode,
             Reference: uuid,
+            Locale: 'en_US',
+            Venue: 'online',
           },
           Person: {
             Name: {
@@ -29,8 +31,8 @@ module LexisNexis
         }.to_json
       end
 
-      def url_request_path
-        "/restws/identity/v2/#{ENV.fetch('LEXISNEXIS_ACCOUNT_ID')}/PhoneFinder/conversation"
+      def workflow_name
+        ENV.fetch('LEXISNEXIS_PHONE_FINDER_WORKFLOW')
       end
     end
   end

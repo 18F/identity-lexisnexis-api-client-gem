@@ -21,7 +21,7 @@ describe LexisNexis::InstantVerify::VerificationRequest do
 
   describe '#url' do
     it 'returns a url for the Instant Verify endpoint' do
-      expect(subject.url).to eq('https://example.com/restws/identity/v2/test_account/InstantVerify/conversation')
+      expect(subject.url).to eq('https://example.com/restws/identity/v2/test_account/customers.gsa.instant.verify.workflow/conversation')
     end
   end
 end

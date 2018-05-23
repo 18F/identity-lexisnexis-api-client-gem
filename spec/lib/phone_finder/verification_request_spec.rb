@@ -22,7 +22,7 @@ describe LexisNexis::PhoneFinder::VerificationRequest do
 
   describe '#url' do
     it 'returns a url for the Phone Finder endpoint' do
-      expect(subject.url).to eq('https://example.com/restws/identity/v2/test_account/PhoneFinder/conversation')
+      expect(subject.url).to eq('https://example.com/restws/identity/v2/test_account/customers.gsa.phonefinder.workflow/conversation')
     end
   end
 end
