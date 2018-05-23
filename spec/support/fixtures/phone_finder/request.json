@@ -1,8 +1,10 @@
 {
   "Settings": {
-    "Workflow": "PhoneFinder_WF",
+    "AccountNumber": "test_account",
     "Mode": "testing",
-    "Reference": "1234-abcd"
+    "Reference": "1234-abcd",
+    "Locale": "en_US",
+    "Venue": "online"
   },
   "Person": {
     "Name": {

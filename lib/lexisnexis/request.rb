@@ -23,6 +23,10 @@ module LexisNexis
 
     private
 
+    def account_number
+      ENV.fetch('LEXISNEXIS_ACCOUNT_ID')
+    end
+
     def base_url
       ENV.fetch('LEXISNEXIS_BASE_URL')
     end
@@ -30,6 +34,7 @@ module LexisNexis
     def build_request_headers
       {
         'Authorization' => "Basic #{encoded_credentials}",
+        'Content-Type' => 'application/json',
       }
     end
 
@@ -52,6 +57,10 @@ module LexisNexis
 
     def mode
       ENV.fetch('LEXISNEXIS_REQUEST_MODE')
+    end
+
+    def url_request_path
+      "/restws/identity/v2/#{account_number}/#{workflow_name}/conversation"
     end
 
     def uuid
