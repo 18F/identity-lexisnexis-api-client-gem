@@ -31,6 +31,7 @@ describe 'LexisNexis Proofers' do
           expect(result.success?).to eq(true)
         elsif datum['result'] == 'failed'
           expect(result.success?).to eq(false)
+          expect(result.exception).to eq(nil)
         else
           raise "Unexpected result type: #{result}"
         end
@@ -43,6 +44,7 @@ describe 'LexisNexis Proofers' do
           expect(result.success?).to eq(true)
         elsif datum['result'] == 'failed'
           expect(result.success?).to eq(false)
+          expect(result.exception).to eq(nil)
         else
           raise "Unexpected result type: #{datum['result']}"
         end
