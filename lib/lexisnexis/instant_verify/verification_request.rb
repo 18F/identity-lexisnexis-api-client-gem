@@ -31,7 +31,7 @@ module LexisNexis
       end
 
       def workflow_name
-        ENV.fetch('LEXISNEXIS_INSTANT_VERIFY_WORKFLOW')
+        ENV.fetch('lexisnexis_instant_verify_workflow')
       end
     end
   end

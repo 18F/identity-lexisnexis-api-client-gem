@@ -32,7 +32,7 @@ module LexisNexis
       end
 
       def workflow_name
-        ENV.fetch('LEXISNEXIS_PHONE_FINDER_WORKFLOW')
+        ENV.fetch('lexisnexis_phone_finder_workflow')
       end
     end
   end

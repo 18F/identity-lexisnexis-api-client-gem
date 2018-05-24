@@ -1,6 +1,8 @@
 module LexisNexis
   module InstantVerify
     class Proofer < LexisNexis::Proofer
+      vendor_name 'lexisnexis:instant_verify'
+
       attributes :uuid,
                  :first_name,
                  :last_name,

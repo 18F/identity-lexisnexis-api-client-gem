@@ -24,11 +24,11 @@ module LexisNexis
     private
 
     def account_number
-      ENV.fetch('LEXISNEXIS_ACCOUNT_ID')
+      ENV.fetch('lexisnexis_account_id')
     end
 
     def base_url
-      ENV.fetch('LEXISNEXIS_BASE_URL')
+      ENV.fetch('lexisnexis_base_url')
     end
 
     def build_request_headers
@@ -51,12 +51,12 @@ module LexisNexis
 
     def encoded_credentials
       Base64.strict_encode64(
-        "#{ENV.fetch('LEXISNEXIS_USERNAME')}:#{ENV.fetch('LEXISNEXIS_PASSWORD')}"
+        "#{ENV.fetch('lexisnexis_username')}:#{ENV.fetch('lexisnexis_password')}"
       )
     end
 
     def mode
-      ENV.fetch('LEXISNEXIS_REQUEST_MODE')
+      ENV.fetch('lexisnexis_request_mode')
     end
 
     def url_request_path
