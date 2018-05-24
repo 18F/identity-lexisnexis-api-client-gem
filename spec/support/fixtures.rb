@@ -30,6 +30,10 @@ module Fixtures
       JSON.parse(raw).to_json
     end
 
+    def lexisnexis_test_data
+      read_fixture_file_at_path('fixtures/lexisnexis_test_data.csv')
+    end
+
     private
 
     def read_fixture_file_at_path(filepath)
