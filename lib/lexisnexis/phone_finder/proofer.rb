@@ -1,6 +1,8 @@
 module LexisNexis
   module PhoneFinder
     class Proofer < LexisNexis::Proofer
+      vendor_name 'lexisnexis:phone_finder'
+
       attributes :uuid,
                  :first_name,
                  :last_name,
