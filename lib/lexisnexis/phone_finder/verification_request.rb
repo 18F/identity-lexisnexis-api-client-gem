@@ -3,7 +3,7 @@ module LexisNexis
     class VerificationRequest < Request
       private
 
-      def build_request_body # rubocop:disable Metrics/MethodLength
+      def build_request_body # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
         {
           Settings: {
             AccountNumber: account_number,
@@ -18,7 +18,7 @@ module LexisNexis
               LastName: attributes[:last_name],
             },
             SSN: {
-              Number: attributes[:ssn],
+              Number: attributes[:ssn].gsub(/\D/, ''),
               Type: 'ssn9',
             },
             DateOfBirth: DateFormatter.new(attributes[:dob]).formatted_date,

@@ -4,7 +4,7 @@ describe LexisNexis::InstantVerify::VerificationRequest do
       uuid: '1234-abcd',
       first_name: 'Johnathan',
       last_name: 'Cooper',
-      ssn: '123456789',
+      ssn: '123-45-6789',
       dob: '01/01/1980',
     }
   end
