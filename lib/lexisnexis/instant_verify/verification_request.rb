@@ -22,7 +22,7 @@ module LexisNexis
               LastName: attributes[:last_name],
             },
             SSN: {
-              Number: attributes[:ssn],
+              Number: attributes[:ssn].gsub(/\D/, ''),
               Type: 'ssn9',
             },
             DateOfBirth: DateFormatter.new(attributes[:dob]).formatted_date,
