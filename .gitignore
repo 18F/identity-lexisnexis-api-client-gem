@@ -7,3 +7,4 @@ tmp/
 *.crt
 *.PFX
 .overcommit.yml
+spec/support/fixtures/lexisnexis_test_data.csv
