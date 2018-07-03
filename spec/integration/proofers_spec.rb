@@ -18,6 +18,11 @@ describe 'LexisNexis Proofers' do
           last_name: datum['last_name'],
           ssn: datum['ssn'],
           dob: datum['dob'],
+          address1: datum['address1'],
+          address2: datum['address2'],
+          city: datum['city'],
+          state: datum['state'],
+          zipcode: datum['zipcode'],
           phone: datum['phone'],
         }
       end

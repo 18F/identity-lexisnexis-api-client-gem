@@ -6,6 +6,11 @@ describe LexisNexis::InstantVerify::Proofer do
       last_name: 'Cooper',
       ssn: '123456789',
       dob: '01/01/1980',
+      address1: '123 Main St',
+      address2: 'Ste 3',
+      city: 'Baton Rouge',
+      state: 'LA',
+      zipcode: '70802-12345',
     }
   end
   let(:verification_request) { LexisNexis::InstantVerify::VerificationRequest.new(applicant) }

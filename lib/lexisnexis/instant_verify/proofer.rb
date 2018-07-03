@@ -3,11 +3,17 @@ module LexisNexis
     class Proofer < LexisNexis::Proofer
       vendor_name 'lexisnexis:instant_verify'
 
-      attributes :uuid,
-                 :first_name,
-                 :last_name,
-                 :dob,
-                 :ssn
+      required_attributes :uuid,
+                          :first_name,
+                          :last_name,
+                          :dob,
+                          :ssn,
+                          :address1,
+                          :city,
+                          :state,
+                          :zipcode
+
+      optional_attributes :address2
 
       stage :resolution
 
