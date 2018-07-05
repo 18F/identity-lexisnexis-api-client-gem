@@ -3,12 +3,12 @@ module LexisNexis
     class Proofer < LexisNexis::Proofer
       vendor_name 'lexisnexis:phone_finder'
 
-      attributes :uuid,
-                 :first_name,
-                 :last_name,
-                 :dob,
-                 :ssn,
-                 :phone
+      required_attributes :uuid,
+                          :first_name,
+                          :last_name,
+                          :dob,
+                          :ssn,
+                          :phone
 
       stage :address
 
