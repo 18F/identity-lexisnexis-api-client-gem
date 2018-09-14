@@ -17,7 +17,7 @@ module LexisNexis
 
     def send
       Response.new(
-        Typhoeus.post(url, body: body, headers: headers)
+        Typhoeus.post(url, body: body, headers: headers, timeout: timeout)
       )
     end
 
@@ -65,6 +65,10 @@ module LexisNexis
 
     def uuid
       attributes.fetch(:uuid, SecureRandom.uuid)
+    end
+
+    def timeout
+      ENV.fetch('LEXISNEXIS_REQUEST_TIMEOUT', 5).to_i
     end
   end
 end

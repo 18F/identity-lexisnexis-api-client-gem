@@ -10,6 +10,7 @@ module LexisNexis
 
     def initialize(response)
       @response = response
+      handle_request_timeout_error
       handle_unexpected_http_status_code_error
       handle_unexpected_verification_status_error
       handle_verification_transaction_error
@@ -25,6 +26,11 @@ module LexisNexis
     end
 
     private
+
+    def handle_request_timeout_error
+      return unless response.timed_out?
+      raise ::Proofer::TimeoutError, 'Timed out waiting for verification response'
+    end
 
     def handle_unexpected_http_status_code_error
       return if response.success?

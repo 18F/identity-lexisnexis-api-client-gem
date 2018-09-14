@@ -1,13 +1,29 @@
 describe LexisNexis::Response do
   let(:response_status_code) { 200 }
   let(:response_body) { Fixtures.instant_verify_success_response_json }
+  let(:response_return_code) { :ok }
   let(:response) do
-    Typhoeus::Response.new(code: response_status_code, body: response_body, return_code: :ok)
+    Typhoeus::Response.new(
+      code: response_status_code,
+      body: response_body,
+      return_code: response_return_code
+    )
   end
 
   subject { LexisNexis::Response.new(response) }
 
   describe '.new' do
+    context 'when the request times out' do
+      let(:response_return_code) { :operation_timedout }
+
+      it 'raises a timeout error' do
+        expect { subject }.to raise_error(
+          Proofer::TimeoutError,
+          'Timed out waiting for verification response'
+        )
+      end
+    end
+
     context 'with an HTTP status error code' do
       let(:response_status_code) { 500 }
       let(:response_body) { 'something went horribly wrong' }
