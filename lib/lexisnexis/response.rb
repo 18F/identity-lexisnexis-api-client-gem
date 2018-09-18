@@ -29,7 +29,8 @@ module LexisNexis
 
     def handle_request_timeout_error
       return unless response.timed_out?
-      raise ::Proofer::TimeoutError, 'Timed out waiting for verification response'
+      raise ::Proofer::TimeoutError,
+            'LexisNexis timed out waiting for verification response'
     end
 
     def handle_unexpected_http_status_code_error

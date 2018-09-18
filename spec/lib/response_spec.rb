@@ -19,7 +19,7 @@ describe LexisNexis::Response do
       it 'raises a timeout error' do
         expect { subject }.to raise_error(
           Proofer::TimeoutError,
-          'Timed out waiting for verification response'
+          'LexisNexis timed out waiting for verification response'
         )
       end
     end
