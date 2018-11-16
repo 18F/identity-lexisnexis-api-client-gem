@@ -2,8 +2,8 @@ describe LexisNexis::PhoneFinder::VerificationRequest do
   let(:attributes) do
     {
       uuid: '1234-abcd',
-      first_name: 'Johnathan',
-      last_name: 'Cooper',
+      first_name: 'Testy',
+      last_name: 'McTesterson',
       ssn: '123456789',
       dob: '01/01/1980',
       phone: '5551231234',
