@@ -2,8 +2,8 @@ describe LexisNexis::PhoneFinder::Proofer do
   let(:applicant) do
     {
       uuid: '1234-abcd',
-      first_name: 'Johnathan',
-      last_name: 'Cooper',
+      first_name: 'Testy',
+      last_name: 'McTesterson',
       ssn: '123-45-6789',
       dob: '01/01/1980',
       phone: '5551231234',
