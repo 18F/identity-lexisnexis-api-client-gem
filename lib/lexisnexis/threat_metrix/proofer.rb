@@ -1,8 +1,8 @@
 module LexisNexis
-  # Verifies through the RDP platform
-  module InstantVerify
+  # Verifies through the DDP platform (newer)
+  class ThreatMetrix
     class Proofer < LexisNexis::Proofer
-      vendor_name 'lexisnexis:instant_verify'
+      vendor_name 'lexisnexis:threat_metrix_ddp'
 
       required_attributes :uuid,
                           :first_name,
@@ -23,7 +23,7 @@ module LexisNexis
       end
 
       def send_verification_request(applicant)
-        VerificationRequest.new(applicant).send
+        VerificationRequestDdp.new(applicant).send
       end
     end
   end
