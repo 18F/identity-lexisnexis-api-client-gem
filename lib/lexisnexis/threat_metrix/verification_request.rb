@@ -1,10 +1,9 @@
-require 'base64'
+require 'digest'
 require 'typhoeus'
 require 'uri'
-require 'digest'
 
 module LexisNexis
-  module ThreatMetrix
+  class ThreatMetrix
     class VerificationRequest
       BASE_URL = 'https://h-api.online-metrix.net'.freeze
 
