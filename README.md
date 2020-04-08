@@ -1,5 +1,20 @@
 # lexisnexis-api-client
 
+## Tests
+
+**Unit tests**:
+
+```
+make unit_test
+```
+
+**Integration tests**:
+(TODO: requires a fixture file)
+
+```
+make integration_test
+```
+
 ## Contributing
 
 See [CONTRIBUTING](CONTRIBUTING.md) for additional information.
