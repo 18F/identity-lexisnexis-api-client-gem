@@ -1,6 +1,7 @@
 require 'digest'
 require 'typhoeus'
 require 'uri'
+require 'securerandom'
 
 module LexisNexis
   module ThreatMetrix
@@ -32,7 +33,7 @@ module LexisNexis
           # Don't specify a policy, use the default one
           # policy: "nao_s_bank",
           event_type: "account_creation",
-          session_id: "CCC", # ???
+          session_id: SecureRandom.hex,
           transaction_id: "202003010",
 
           # account_email: "test@test.com",
@@ -46,6 +47,7 @@ module LexisNexis
           account_address_street2: attributes[:address2] || '',
           account_address_city: attributes[:city],
           account_address_state: attributes[:state],
+          account_address_zip: attributes[:zipcode],
           account_address_country: 'US',
           national_id_number: us_ssn_hash,
           national_id_type: 'US_SSN_HASH',
@@ -74,7 +76,7 @@ module LexisNexis
 
       def headers
         {
-          'Content-Type' => 'application/json',
+          'Accept' => 'application/json',
         }
       end
     end

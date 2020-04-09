@@ -25,6 +25,11 @@ module LexisNexis
       @verification_status ||= response_body.dig('Status', 'TransactionStatus')
     end
 
+    # @api private
+    def response_body
+      @response_body ||= JSON.parse(response.body)
+    end
+
     private
 
     def handle_request_timeout_error
@@ -51,10 +56,6 @@ module LexisNexis
       error_information = response_body.fetch('Information', {}).to_json
       message = "Response error with code '#{error_code}': #{error_information}"
       raise VerificationTransactionError, message
-    end
-
-    def response_body
-      @response_body ||= JSON.parse(response.body)
     end
   end
 end

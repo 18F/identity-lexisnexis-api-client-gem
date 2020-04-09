@@ -6,6 +6,7 @@ module LexisNexis
       REVIEW_STATUS_MAP = {
         'pass' => 'passed',
         'reject' => 'failed',
+        'review' => 'failed',
       }.freeze
 
       def verification_errors
@@ -14,7 +15,7 @@ module LexisNexis
       end
 
       def verification_status
-        REVIEW_STATUS_MAP.fetch(response_body.fetch('review_status'))
+        REVIEW_STATUS_MAP.fetch(response_body['review_status'])
       end
     end
   end
