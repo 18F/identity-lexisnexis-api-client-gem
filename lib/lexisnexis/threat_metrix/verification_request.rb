@@ -3,7 +3,7 @@ require 'typhoeus'
 require 'uri'
 
 module LexisNexis
-  class ThreatMetrix
+  module ThreatMetrix
     class VerificationRequest
       BASE_URL = 'https://h-api.online-metrix.net'.freeze
 
@@ -14,7 +14,7 @@ module LexisNexis
       end
 
       def send
-        Response.new(
+        ThreatMetrix::Response.new(
           Typhoeus.post(url, body: body, headers: headers, timeout: timeout)
         )
       end
@@ -34,21 +34,21 @@ module LexisNexis
           event_type: "account_creation",
           session_id: "CCC", # ???
           transaction_id: "202003010",
-          account_login: "DDD", # ???
 
           # account_email: "test@test.com",
           # input_ip_address: "255.255.255.0",
 
+          account_login: attributes[:uuid],
           account_first_name: attributes[:first_name],
           account_last_name: attributes[:last_name],
           account_date_of_birth: date_of_birth,
-          national_id_number: us_ssn_hash,
-          national_id_type: 'US_SSN_HASH',
           account_address_street1: attributes[:address1],
           account_address_street2: attributes[:address2] || '',
           account_address_city: attributes[:city],
           account_address_state: attributes[:state],
           account_address_country: 'US',
+          national_id_number: us_ssn_hash,
+          national_id_type: 'US_SSN_HASH',
         }
        end
 

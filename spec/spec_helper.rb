@@ -15,3 +15,5 @@ RSpec.configure do |config|
   config.color = true
   config.example_status_persistence_file_path = './tmp/rspec-examples.txt'
 end
+
+require 'webmock/rspec'

@@ -1,6 +1,6 @@
 module LexisNexis
   # Verifies through the DDP platform (newer)
-  class ThreatMetrix
+  module ThreatMetrix
     class Proofer < ::LexisNexis::Proofer
       vendor_name 'lexisnexis:threat_metrix_ddp'
 

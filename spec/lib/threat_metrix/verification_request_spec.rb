@@ -54,4 +54,28 @@ describe LexisNexis::ThreatMetrix::VerificationRequest do
       expect(subject.url).to eq('https://h-api.online-metrix.net/api/session-query')
     end
   end
+
+  describe '#send' do
+    let(:body) { Fixtures.threat_metrix_response_json }
+
+    before do
+      stub_request(:post, 'https://h-api.online-metrix.net/api/session-query')
+        .to_return(status: 200, body: body, headers: { 'Content-Type' => 'application/json'})
+    end
+
+    subject(:response) { request.send }
+
+    it 'is successful for a succesful request' do
+      expect(response.verification_status).to eq('passed')
+    end
+
+    context 'with a failure response' do
+      let(:body) { Fixtures.threat_metrix_failure_response_json }
+
+      it 'adds errors' do
+        expect(response.verification_status).to_not eq('passed')
+        expect(response.verification_errors).to_not be_empty
+      end
+    end
+  end
 end
