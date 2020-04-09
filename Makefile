@@ -1,9 +1,9 @@
 setup:
 	bundle check || bundle install
 
-unit_test:
+test:
 	bundle exec rspec spec/lib
 
-integration_test:
+test_integration:
 	# TODO: set up required files?
 	bundle exec rspec spec/
