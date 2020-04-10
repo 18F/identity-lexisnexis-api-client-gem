@@ -56,10 +56,10 @@ describe LexisNexis::Response do
 
       it 'raises an error that includes the reason code and information from the reponse' do
         error = begin
-          subject
-        rescue LexisNexis::Response::VerificationTransactionError => error
-          error
-        end
+                  subject
+                rescue LexisNexis::Response::VerificationTransactionError => e
+                  e
+                end
 
         expect(error).to be_a(LexisNexis::Response::VerificationTransactionError)
         expect(error.message).to include(

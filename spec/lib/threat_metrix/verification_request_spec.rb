@@ -59,8 +59,8 @@ describe LexisNexis::ThreatMetrix::VerificationRequest do
     let(:body) { Fixtures.threat_metrix_response_json }
 
     before do
-      stub_request(:post, 'https://h-api.online-metrix.net/api/session-query')
-        .to_return(status: 200, body: body, headers: { 'Content-Type' => 'application/json'})
+      stub_request(:post, 'https://h-api.online-metrix.net/api/session-query').
+        to_return(status: 200, body: body, headers: { 'Content-Type' => 'application/json' })
     end
 
     subject(:response) { request.send }

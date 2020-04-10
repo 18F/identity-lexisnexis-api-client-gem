@@ -11,6 +11,7 @@ module LexisNexis
 
       def verification_errors
         return {} unless verification_status == 'failed'
+
         ::LexisNexis::ThreatMetrix::ErrorParser.new(response_body).parsed_errors
       end
 

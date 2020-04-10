@@ -24,20 +24,22 @@ module LexisNexis
         URI.join(BASE_URL, '/api/session-query').to_s
       end
 
+      # rubocop:disable Metrics/AbcSize
+      # rubocop:disable Metrics/MethodLength
       def body
         {
           api_key: api_key,
           org_id: org_id,
-          service_type: "session-policy",
-          output_format: "json",
+          service_type: 'session-policy',
+          output_format: 'json',
           # Don't specify a policy, use the default one
-          # policy: "nao_s_bank",
-          event_type: "account_creation",
+          # policy: 'nao_s_bank',
+          event_type: 'account_creation',
           session_id: SecureRandom.hex,
-          transaction_id: "202003010",
+          transaction_id: '202003010', # TODO: random?
 
-          # account_email: "test@test.com",
-          # input_ip_address: "255.255.255.0",
+          # account_email: 'test@test.com',
+          # input_ip_address: '255.255.255.0',
 
           account_login: attributes[:uuid],
           account_first_name: attributes[:first_name],
@@ -52,7 +54,9 @@ module LexisNexis
           national_id_number: us_ssn_hash,
           national_id_type: 'US_SSN_HASH',
         }
-       end
+      end
+      # rubocop:enable Metrics/MethodLength
+      # rubocop:enable Metrics/AbcSize
 
       def us_ssn_hash
         Digest::SHA256.hexdigest(attributes[:ssn].gsub(/\D/, ''))

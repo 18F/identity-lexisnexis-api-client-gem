@@ -12,8 +12,8 @@ shared_examples 'a request' do |basic_auth: true|
 
   describe '#send' do
     it 'returns a response object initialized with the http response' do
-      stub_request(:post, subject.url)
-        .to_return(status: 200, body: response_body)
+      stub_request(:post, subject.url).
+        to_return(status: 200, body: response_body)
 
       verification_response = instance_double(LexisNexis::Response)
       expect(LexisNexis::Response).to receive(:new).
