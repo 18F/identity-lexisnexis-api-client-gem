@@ -16,7 +16,12 @@ module LexisNexis
       end
 
       def verification_status
-        REVIEW_STATUS_MAP.fetch(response_body['review_status'])
+        raw_review_status = response_body['review_status']
+        REVIEW_STATUS_MAP.fetch(raw_review_status, raw_review_status)
+      end
+
+      def handle_verification_transaction_error
+        # no-op to override error handling from superclass
       end
     end
   end

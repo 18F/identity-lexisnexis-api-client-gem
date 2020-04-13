@@ -36,11 +36,6 @@ module LexisNexis
           # policy: 'nao_s_bank',
           event_type: 'account_creation',
           session_id: SecureRandom.hex,
-          transaction_id: '202003010', # TODO: random?
-
-          # account_email: 'test@test.com',
-          # input_ip_address: '255.255.255.0',
-
           account_login: attributes[:uuid],
           account_first_name: attributes[:first_name],
           account_last_name: attributes[:last_name],
