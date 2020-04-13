@@ -1,6 +1,9 @@
 setup:
 	bundle check || bundle install
 
+lint:
+	bundle exec rubocop
+
 test:
 	bundle exec rspec spec/lib
 
