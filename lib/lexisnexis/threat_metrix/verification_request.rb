@@ -21,7 +21,7 @@ module LexisNexis
       end
 
       def url
-        URI.join(BASE_URL, '/api/session-query').to_s
+        URI.join(BASE_URL, '/api/attribute-query').to_s
       end
 
       # rubocop:disable Metrics/AbcSize

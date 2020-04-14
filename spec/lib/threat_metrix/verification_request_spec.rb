@@ -51,7 +51,7 @@ describe LexisNexis::ThreatMetrix::VerificationRequest do
 
   describe '#url' do
     it 'returns a url for the Instant Verify endpoint' do
-      expect(subject.url).to eq('https://h-api.online-metrix.net/api/session-query')
+      expect(subject.url).to eq('https://h-api.online-metrix.net/api/attribute-query')
     end
   end
 
@@ -59,7 +59,7 @@ describe LexisNexis::ThreatMetrix::VerificationRequest do
     let(:body) { Fixtures.threat_metrix_response_json }
 
     before do
-      stub_request(:post, 'https://h-api.online-metrix.net/api/session-query').
+      stub_request(:post, 'https://h-api.online-metrix.net/api/attribute-query').
         to_return(status: 200, body: body, headers: { 'Content-Type' => 'application/json' })
     end
 
