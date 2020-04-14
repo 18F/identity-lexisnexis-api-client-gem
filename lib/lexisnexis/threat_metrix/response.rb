@@ -21,7 +21,11 @@ module LexisNexis
       end
 
       def handle_verification_transaction_error
-        # no-op to override error handling from superclass
+        request_result = response_body['request_result']
+        return if request_result == 'success'
+
+        message = "Invalid request_result in response body: '#{verification_status}'"
+        raise UnexpectedVerificationStatusCodeError, message
       end
     end
   end

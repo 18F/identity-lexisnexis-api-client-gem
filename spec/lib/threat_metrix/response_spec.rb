@@ -39,14 +39,14 @@ RSpec.describe LexisNexis::ThreatMetrix::Response do
     context 'with an invalid transaction status' do
       let(:response_body) do
         parsed_body = JSON.parse(super())
-        parsed_body['review_status'] = 'fake_status'
+        parsed_body['review_status'] = 'fail_incomplete'
         parsed_body.to_json
       end
 
       it 'raises an error that includes the transaction status code' do
         expect { subject }.to raise_error(
           LexisNexis::Response::UnexpectedVerificationStatusCodeError,
-          "Invalid status in response body: 'fake_status'"
+          "Invalid request_result in response body: 'fail_incomplete'"
         )
       end
     end
