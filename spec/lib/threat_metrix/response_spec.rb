@@ -46,7 +46,7 @@ RSpec.describe LexisNexis::ThreatMetrix::Response do
       it 'raises an error that includes the transaction status code' do
         expect { subject }.to raise_error(
           LexisNexis::Response::UnexpectedVerificationStatusCodeError,
-          "Invalid request_result in response body: 'fail_incomplete'"
+          "Invalid status in response body: 'fail_incomplete'"
         )
       end
     end
@@ -59,7 +59,7 @@ RSpec.describe LexisNexis::ThreatMetrix::Response do
         errors = subject.verification_errors
 
         expect(errors).to be_a(Hash)
-        expect(errors).to include(:base, :SomeOtherProduct, :InstantVerify)
+        expect(errors).to include(:base)
       end
     end
 
