@@ -1,6 +1,6 @@
-describe LexisNexis::Response do
+RSpec.describe LexisNexis::ThreatMetrix::Response do
   let(:response_status_code) { 200 }
-  let(:response_body) { Fixtures.instant_verify_success_response_json }
+  let(:response_body) { Fixtures.threat_metrix_response_json }
   let(:response_return_code) { :ok }
   let(:response) do
     Typhoeus::Response.new(
@@ -10,7 +10,7 @@ describe LexisNexis::Response do
     )
   end
 
-  subject { LexisNexis::Response.new(response) }
+  subject { LexisNexis::ThreatMetrix::Response.new(response) }
 
   describe '.new' do
     context 'when the request times out' do
@@ -39,45 +39,27 @@ describe LexisNexis::Response do
     context 'with an invalid transaction status' do
       let(:response_body) do
         parsed_body = JSON.parse(super())
-        parsed_body['Status']['TransactionStatus'] = 'fake_status'
+        parsed_body['review_status'] = 'fail_incomplete'
         parsed_body.to_json
       end
 
       it 'raises an error that includes the transaction status code' do
         expect { subject }.to raise_error(
           LexisNexis::Response::UnexpectedVerificationStatusCodeError,
-          "Invalid status in response body: 'fake_status'"
+          "Invalid status in response body: 'fail_incomplete'"
         )
-      end
-    end
-
-    context 'with a transaction error' do
-      let(:response_body) { Fixtures.instant_verify_error_response_json }
-
-      it 'raises an error that includes the reason code and information from the reponse' do
-        error = begin
-                  subject
-                rescue LexisNexis::Response::VerificationTransactionError => e
-                  e
-                end
-
-        expect(error).to be_a(LexisNexis::Response::VerificationTransactionError)
-        expect(error.message).to include(
-          "Response error with code 'invalid_transaction_initiate'"
-        )
-        expect(error.message).to include(JSON.parse(response_body)['Information'].to_json)
       end
     end
   end
 
   describe '#verification_errors' do
     context 'with a failed verification' do
-      let(:response_body) { Fixtures.instant_verify_failure_response_json }
+      let(:response_body) { Fixtures.threat_metrix_failure_response_json }
       it 'returns a hash of errors' do
         errors = subject.verification_errors
 
         expect(errors).to be_a(Hash)
-        expect(errors).to include(:base, :SomeOtherProduct, :InstantVerify)
+        expect(errors).to include(:base)
       end
     end
 
@@ -92,7 +74,7 @@ describe LexisNexis::Response do
     end
 
     context 'failed' do
-      let(:response_body) { Fixtures.instant_verify_failure_response_json }
+      let(:response_body) { Fixtures.threat_metrix_failure_response_json }
       it { expect(subject.verification_status).to eq('failed') }
     end
   end

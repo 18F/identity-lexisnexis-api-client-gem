@@ -1,4 +1,3 @@
-# rubocop:disable Style/FileName
 $LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'lexisnexis/version'
 
@@ -29,9 +28,10 @@ Gem::Specification.new do |s|
   s.add_dependency('dotenv')
   s.add_dependency('typhoeus')
 
+  s.add_development_dependency('activesupport')
   s.add_development_dependency('pry-byebug')
   s.add_development_dependency('rake')
   s.add_development_dependency('rspec')
-  s.add_development_dependency('rubocop')
+  s.add_development_dependency('rubocop', '~> 0.81.0')
   s.add_development_dependency('webmock')
 end

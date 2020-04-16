@@ -1,8 +1,9 @@
 # use local 'lib' dir in include path
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 
-require 'pry-byebug'
 require 'dotenv'
+require 'pry-byebug'
+require 'webmock/rspec'
 
 Dotenv.load('.env.test')
 

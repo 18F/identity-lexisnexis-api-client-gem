@@ -3,6 +3,7 @@ module LexisNexis
     def proof_applicant(applicant, result)
       response = send_verification_request(applicant)
       return if response.verification_status == 'passed'
+
       response.verification_errors.each do |key, error_message|
         result.add_error(key, error_message)
       end

@@ -14,6 +14,10 @@ module LexisNexis
       }
     end
 
+    def yyyymmdd
+      date.strftime('%Y%m%d')
+    end
+
     private
 
     def parse_date_string(date_string)

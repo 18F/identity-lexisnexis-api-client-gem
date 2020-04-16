@@ -1,8 +1,8 @@
 module LexisNexis
-  # Verifies through the RDP platform
-  module InstantVerify
-    class Proofer < LexisNexis::Proofer
-      vendor_name 'lexisnexis:instant_verify'
+  # Verifies through the DDP platform (newer)
+  module ThreatMetrix
+    class Proofer < ::LexisNexis::Proofer
+      vendor_name 'lexisnexis:threat_metrix_ddp'
 
       required_attributes :uuid,
                           :first_name,

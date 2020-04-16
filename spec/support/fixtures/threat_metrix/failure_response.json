@@ -1,0 +1,513 @@
+{
+  "account_email": "testreject@test.test",
+  "account_email_domain": "test.test",
+  "account_email_result": "not found",
+  "account_login": "11111111",
+  "account_login_attributes": [
+    "_CHALLENGE_PASSED"
+  ],
+  "account_login_first_seen": "2019-10-13",
+  "account_login_last_event": "2020-04-09",
+  "account_login_last_update": "2020-04-09",
+  "account_login_result": "success",
+  "account_login_score": "0",
+  "account_login_worst_score": "0",
+  "api_call_datetime": "2020-04-09 22:07:16.247",
+  "api_version": "11.1",
+  "bb_assessment": "275.00",
+  "bb_bot_score": "500.00",
+  "bb_fraud_score": "500.00",
+  "champion_request_duration": "8",
+  "digital_id": "abcdef123456",
+  "digital_id_confidence": "0",
+  "digital_id_confidence_rating": "very_low",
+  "digital_id_first_seen": "2020-04-09",
+  "digital_id_last_event": "2020-04-09",
+  "digital_id_last_update": "2020-04-09",
+  "digital_id_reason_code": [
+    "_TID_NEW_ID"
+  ],
+  "digital_id_result": "new_digital_id",
+  "digital_id_trust_score": "0.00",
+  "digital_id_trust_score_rating": "very_low",
+  "digital_id_trust_score_reason_code": [
+    "_ts_conf_avg_zero",
+    "_ts_very_low_conf_score",
+    "_ts_gbl_email_black",
+    "_ts_very_low_entity_age_score",
+    "_ts_very_low_did_age_score",
+    "_ts_very_short_did_distance",
+    "_ts_very_low_graph_complex",
+    "_ts_unknown_sess",
+    "_ts_new_did",
+    "_ts_did_black"
+  ],
+  "event_datetime": "2020-04-09 22:07:16.247",
+  "event_type": "account_creation",
+  "input_ip_activities": [
+    "_WATCH"
+  ],
+  "input_ip_address": "203.78.65.4",
+  "input_ip_attributes": [
+    "_CHALLENGE_PASSED",
+    "_WATCH"
+  ],
+  "input_ip_city": "hong kong",
+  "input_ip_first_seen": "2019-06-18",
+  "input_ip_geo": "HK",
+  "input_ip_home": "no",
+  "input_ip_isp": "towngas telecommunications fixed network ltdetwork",
+  "input_ip_last_event": "2020-04-09",
+  "input_ip_last_update": "2020-04-09",
+  "input_ip_latitude": "22.39640",
+  "input_ip_longitude": "114.10950",
+  "input_ip_organization": "icare.com ltd",
+  "input_ip_result": "success",
+  "input_ip_score": "0",
+  "input_ip_worst_score": "0",
+  "org_id": "21n5dt8a",
+  "policy": "default",
+  "policy_details_api": {
+    "policy_detail_api": [
+      {
+        "type": "champion",
+        "id": "0",
+        "customer": {
+          "score": "-100",
+          "pvid": "1349974",
+          "review_status": "reject",
+          "risk_rating": "high",
+          "rules": [
+            {
+              "rid": "118936326",
+              "reason_code": "UNKNOWN SESSION",
+              "score": "0"
+            },
+            {
+              "rid": "118936336",
+              "reason_code": "Email Blacklisted",
+              "score": "-100"
+            },
+            {
+              "rid": "118936354",
+              "reason_code": "New Email LT 1HR (Global)",
+              "score": "-8"
+            },
+            {
+              "rid": "118936365",
+              "reason_code": "Nonsense Email",
+              "score": "0"
+            },
+            {
+              "rid": "118936380",
+              "reason_code": "Device/IP Tagged Risky 2x/7Days",
+              "score": "-5"
+            },
+            {
+              "rid": "118936415",
+              "reason_code": "SessionID Dup 5x",
+              "score": "-20"
+            },
+            {
+              "rid": "118936695",
+              "reason_code": "NAO Unable to Profile Device",
+              "score": "-30"
+            }
+          ],
+          "vars": [
+            {
+              "rid": "118936199",
+              "variable": "gblcntdistccbingeoinputip_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936286",
+              "variable": "gblcntdistexactidemail_30dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936220",
+              "variable": "gblcntdistexactidemail_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936219",
+              "variable": "gblcntdistexactidemail_wk",
+              "value": "0"
+            },
+            {
+              "rid": "118936210",
+              "variable": "gblcntdistorglogin_30dy",
+              "value": "2"
+            },
+            {
+              "rid": "118936303",
+              "variable": "gblcntdisttruegeoemail_30dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936304",
+              "variable": "gblcntdisttruegeoemail_7dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936271",
+              "variable": "gblcntdisttrueipgeoemail_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936198",
+              "variable": "gblvelinputip",
+              "value": "8"
+            },
+            {
+              "rid": "118936196",
+              "variable": "gblvelinputip_unknownsession",
+              "value": "8"
+            },
+            {
+              "rid": "118936277",
+              "variable": "inputip_session_tracking",
+              "value": "8"
+            },
+            {
+              "rid": "118936276",
+              "variable": "inputip_unknown_session",
+              "value": "8"
+            },
+            {
+              "rid": "118936252",
+              "variable": "lclcntdistemailinputip_3mth_dy",
+              "value": "1"
+            },
+            {
+              "rid": "118936244",
+              "variable": "lclcntdistemailinputip_dy",
+              "value": "1"
+            },
+            {
+              "rid": "118936246",
+              "variable": "lclcntdistemailinputip_dy_hr",
+              "value": "1"
+            },
+            {
+              "rid": "118936242",
+              "variable": "lclcntdistemailinputip_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936250",
+              "variable": "lclcntdistemailinputip_mth_dy",
+              "value": "1"
+            },
+            {
+              "rid": "118936248",
+              "variable": "lclcntdistemailinputip_wk_hr",
+              "value": "1"
+            },
+            {
+              "rid": "118936311",
+              "variable": "lclcntdistemailuser",
+              "value": "1"
+            },
+            {
+              "rid": "118936229",
+              "variable": "lclcntdistexactidemail_3mth_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936218",
+              "variable": "lclcntdistexactidemail_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936223",
+              "variable": "lclcntdistexactidemail_dy_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936217",
+              "variable": "lclcntdistexactidemail_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936227",
+              "variable": "lclcntdistexactidemail_mth_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936225",
+              "variable": "lclcntdistexactidemail_wk_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936253",
+              "variable": "lclcntdistinputipemail_3mth_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936245",
+              "variable": "lclcntdistinputipemail_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936247",
+              "variable": "lclcntdistinputipemail_dy_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936243",
+              "variable": "lclcntdistinputipemail_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936251",
+              "variable": "lclcntdistinputipemail_mth_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936249",
+              "variable": "lclcntdistinputipemail_wk_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936312",
+              "variable": "lclcntdistinputipgeouser",
+              "value": "1"
+            },
+            {
+              "rid": "118936241",
+              "variable": "lclcntdistsmartidemail_3mth_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936233",
+              "variable": "lclcntdistsmartidemail_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936235",
+              "variable": "lclcntdistsmartidemail_dy_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936231",
+              "variable": "lclcntdistsmartidemail_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936239",
+              "variable": "lclcntdistsmartidemail_mth_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936237",
+              "variable": "lclcntdistsmartidemail_wk_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936266",
+              "variable": "lclcntdisttrueipemail_3mth_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936257",
+              "variable": "lclcntdisttrueipemail_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936259",
+              "variable": "lclcntdisttrueipemail_dy_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936255",
+              "variable": "lclcntdisttrueipemail_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936264",
+              "variable": "lclcntdisttrueipemail_mth_dy",
+              "value": "0"
+            },
+            {
+              "rid": "118936262",
+              "variable": "lclcntdisttrueipemail_wk_hr",
+              "value": "0"
+            },
+            {
+              "rid": "118936310",
+              "variable": "lclcntdistusersinputip",
+              "value": "1"
+            },
+            {
+              "rid": "118936190",
+              "variable": "lclcntemails_lastlogin",
+              "value": "0"
+            },
+            {
+              "rid": "118936193",
+              "variable": "lclcntinputgeo_lastlogin",
+              "value": "0"
+            },
+            {
+              "rid": "118936191",
+              "variable": "lclcntsmartid_lastlogin",
+              "value": "0"
+            },
+            {
+              "rid": "118936194",
+              "variable": "lclcntstrongid_lastlogin",
+              "value": "0"
+            },
+            {
+              "rid": "118936192",
+              "variable": "lclcnttruegeo_lastlogin",
+              "value": "0"
+            },
+            {
+              "rid": "118936296",
+              "variable": "lclfirstseenemail_inmins",
+              "value": "0"
+            },
+            {
+              "rid": "118936285",
+              "variable": "lclvelemail_hr",
+              "value": "1"
+            },
+            {
+              "rid": "118936197",
+              "variable": "lclvelinputip",
+              "value": "8"
+            },
+            {
+              "rid": "118936209",
+              "variable": "lclvelinputip_dy",
+              "value": "2"
+            },
+            {
+              "rid": "118936195",
+              "variable": "lclvelinputip_unknownsession",
+              "value": "8"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "policy_score": "-100",
+  "reason_code": [
+    "UNKNOWN SESSION",
+    "Email Blacklisted",
+    "New Email LT 1HR (Global)",
+    "Nonsense Email",
+    "Device/IP Tagged Risky 2x/7Days",
+    "SessionID Dup 5x",
+    "NAO Unable to Profile Device"
+  ],
+  "request_duration": "16",
+  "request_id": "f697f195-930e-454a-8fef-9a6e1d0c7785",
+  "request_result": "success",
+  "review_status": "reject",
+  "risk_rating": "high",
+  "service_type": "session-policy",
+  "session_id": "bvtgctibfuccfbtvcubuhbvkntbhjkfvvtruhrfnvuhj",
+  "session_id_query_count": "8",
+  "summary_reason_code": [
+    "BLACKLIST"
+  ],
+  "summary_risk_score": "-100",
+  "tmx_reason_code": [
+    "_IP_GBL_VEL_1_2_8_15",
+    "_IP_GBL_AGE_GT_3MTHS",
+    "_ACC_EMAIL_GBL_AGE_LT_HR",
+    "_ACC_LOGIN_GBL_VEL_1_2_8_15",
+    "_ACC_LOGIN_GBL_AGE_GT_3MTHS",
+    "_DIG_ID_GBL_AGE_LT_HR",
+    "_IP_LCL_VEL_1_2_8_8",
+    "_IP_LCL_AGE_GT_DY",
+    "_ACC_EMAIL_LCL_AGE_LT_HR",
+    "_ACC_LOGIN_LCL_VEL_1_2_8_8",
+    "_ACC_LOGIN_LCL_AGE_GT_DY",
+    "_DIG_ID_LCL_AGE_LT_HR",
+    "PID_LCL_AGE_ACC_EMAIL_LT_DAY",
+    "PID_LIST_ACC_EMAIL_BLACK",
+    "_EXPRESSION_ERROR",
+    "_Rejected_InputIP_Month",
+    "_Email_Global_Blacklist",
+    "_Session_Replay_High"
+  ],
+  "tmx_risk_rating": "neutral",
+  "tmx_summary_reason_code": [
+    "Identity_Negative_History"
+  ],
+  "tmx_variables": {
+    "_accemail_gbl_velocity_hour": "0",
+    "_accemail_local_velocity_hour": "0",
+    "_acclogin_local_velocity_hour": "0",
+    "_exactid_per_email_gbl_hour": "0",
+    "copy": "0",
+    "email_checks": "2",
+    "gblcntdistccbingeoinputip_dy": "0",
+    "gblcntdistexactidemail_30dy": "0",
+    "gblcntdistexactidemail_dy": "0",
+    "gblcntdistexactidemail_wk": "0",
+    "gblcntdistorglogin_30dy": "2",
+    "gblcntdisttruegeoemail_30dy": "0",
+    "gblcntdisttruegeoemail_7dy": "0",
+    "gblcntdisttrueipgeoemail_dy": "0",
+    "gblvelinputip": "8",
+    "gblvelinputip_unknownsession": "8",
+    "inputip_session_tracking": "8",
+    "inputip_unknown_session": "8",
+    "lclcntdistemailinputip_3mth_dy": "1",
+    "lclcntdistemailinputip_dy": "1",
+    "lclcntdistemailinputip_dy_hr": "1",
+    "lclcntdistemailinputip_hr": "0",
+    "lclcntdistemailinputip_mth_dy": "1",
+    "lclcntdistemailinputip_wk_hr": "1",
+    "lclcntdistemailuser": "1",
+    "lclcntdistexactidemail_3mth_dy": "0",
+    "lclcntdistexactidemail_dy": "0",
+    "lclcntdistexactidemail_dy_hr": "0",
+    "lclcntdistexactidemail_hr": "0",
+    "lclcntdistexactidemail_mth_dy": "0",
+    "lclcntdistexactidemail_wk_hr": "0",
+    "lclcntdistinputipemail_3mth_dy": "0",
+    "lclcntdistinputipemail_dy": "0",
+    "lclcntdistinputipemail_dy_hr": "0",
+    "lclcntdistinputipemail_hr": "0",
+    "lclcntdistinputipemail_mth_dy": "0",
+    "lclcntdistinputipemail_wk_hr": "0",
+    "lclcntdistinputipgeouser": "1",
+    "lclcntdistsmartidemail_3mth_dy": "0",
+    "lclcntdistsmartidemail_dy": "0",
+    "lclcntdistsmartidemail_dy_hr": "0",
+    "lclcntdistsmartidemail_hr": "0",
+    "lclcntdistsmartidemail_mth_dy": "0",
+    "lclcntdistsmartidemail_wk_hr": "0",
+    "lclcntdisttrueipemail_3mth_dy": "0",
+    "lclcntdisttrueipemail_dy": "0",
+    "lclcntdisttrueipemail_dy_hr": "0",
+    "lclcntdisttrueipemail_hr": "0",
+    "lclcntdisttrueipemail_mth_dy": "0",
+    "lclcntdisttrueipemail_wk_hr": "0",
+    "lclcntdistusersinputip": "1",
+    "lclcntemails_lastlogin": "0",
+    "lclcntinputgeo_lastlogin": "0",
+    "lclcntsmartid_lastlogin": "0",
+    "lclcntstrongid_lastlogin": "0",
+    "lclcnttruegeo_lastlogin": "0",
+    "lclfirstseenemail_inmins": "0",
+    "lclvelemail_hr": "1",
+    "lclvelinputip": "8",
+    "lclvelinputip_dy": "2",
+    "lclvelinputip_unknownsession": "8",
+    "paste": "0",
+    "remote_access_score_var": "0",
+    "se_score_var": "0",
+    "tab": "0"
+  },
+  "transaction_id": "202003010",
+  "unknown_session": "yes"
+}
