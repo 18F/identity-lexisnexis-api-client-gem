@@ -5,14 +5,14 @@
 **Unit tests**:
 
 ```
-make unit_test
+make test
 ```
 
 **Integration tests**:
 (TODO: requires a fixture file)
 
 ```
-make integration_test
+make test_integration
 ```
 
 ## Contributing
