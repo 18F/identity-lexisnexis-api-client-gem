@@ -1,5 +1,4 @@
 require 'digest'
-require 'typhoeus'
 require 'uri'
 require 'securerandom'
 
@@ -16,8 +15,18 @@ module LexisNexis
 
       def send
         ThreatMetrix::Response.new(
-          Typhoeus.post(url, body: body, headers: headers, timeout: timeout)
+            Faraday.post(url, body: body, headers: headers, timeout: timeout)
         )
+      rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
+        # NOTE: This is only for when Faraday is using NET::HTTP if the adapter is changed
+        # this will have to change
+        if e.message == 'execution expired'
+          raise ::Proofer::TimeoutError,
+                'LexisNexis timed out waiting for verification response'
+        else
+          message = "Lexis Nexis request raised #{e.class} with the message: #{e.message}"
+          raise LexisNexis::RequestError, message
+        end
       end
 
       def url

@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
     'Jonathan Hooper <jonathan.hooper@gsa.gov>',
   ]
   s.email = 'hello@login.gov'
-  s.homepage = 'http://github.com/18F/identity-aamva-api-client-gem'
+  s.homepage = 'https://github.com/18F/identity-lexisnexis-api-client-gem'
   s.summary = 'LexisNexis API client'
   s.description = 'LexisNexis API client for Ruby'
   s.date = Time.now.utc.strftime('%Y-%m-%d')
@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ['--charset=UTF-8']
 
   s.add_dependency('dotenv')
-  s.add_dependency('typhoeus')
+  s.add_dependency('faraday')
 
   s.add_development_dependency('activesupport')
   s.add_development_dependency('pry-byebug')

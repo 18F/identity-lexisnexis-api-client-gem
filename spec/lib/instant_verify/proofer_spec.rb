@@ -16,4 +16,17 @@ describe LexisNexis::InstantVerify::Proofer do
   let(:verification_request) { LexisNexis::InstantVerify::VerificationRequest.new(applicant) }
 
   it_behaves_like 'a proofer'
+
+  describe '#send' do
+    context 'when the request times out' do
+      it 'raises a timeout error' do
+        stub_request(:post, verification_request.url).to_timeout
+
+        expect { verification_request.send }.to raise_error(
+          Proofer::TimeoutError,
+          'LexisNexis timed out waiting for verification response'
+        )
+      end
+    end
+  end
 end
