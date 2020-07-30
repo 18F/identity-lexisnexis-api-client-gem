@@ -17,7 +17,7 @@ shared_examples 'a request' do |basic_auth: true|
 
       verification_response = instance_double(LexisNexis::Response)
       expect(LexisNexis::Response).to receive(:new).
-        with(kind_of(Typhoeus::Response)).
+        with(kind_of(Faraday::Response)).
         and_return(verification_response)
 
       expect(subject.send).to eq(verification_response)
