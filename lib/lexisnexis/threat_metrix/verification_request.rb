@@ -14,8 +14,12 @@ module LexisNexis
       end
 
       def send
+        conn = Faraday.new do |f|
+          f.options[:timeout] = timeout
+        end
+
         ThreatMetrix::Response.new(
-            Faraday.post(url, body: body, headers: headers, timeout: timeout)
+          conn.post(url, body.to_json, headers)
         )
       rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
         # NOTE: This is only for when Faraday is using NET::HTTP if the adapter is changed
@@ -85,6 +89,7 @@ module LexisNexis
       def headers
         {
           'Accept' => 'application/json',
+          'Content-Type' => 'application/json',
         }
       end
     end

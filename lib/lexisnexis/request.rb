@@ -16,8 +16,12 @@ module LexisNexis
     end
 
     def send
+      conn = Faraday.new do |f|
+        f.options[:timeout] = timeout
+      end
+
       Response.new(
-          Faraday.post(url, body: body, headers: headers, timeout: timeout)
+        conn.post(url, body, headers)
       )
     rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
       # NOTE: This is only for when Faraday is using NET::HTTP if the adapter is changed
