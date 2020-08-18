@@ -2,7 +2,7 @@
   "Settings": {
     "AccountNumber": "test_account",
     "Mode": "testing",
-    "Reference": "1234-abcd",
+    "Reference": "0987:1234-abcd",
     "Locale": "en_US",
     "Venue": "online"
   },

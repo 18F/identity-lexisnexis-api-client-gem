@@ -4,6 +4,7 @@ require 'active_support/core_ext/hash'
 describe LexisNexis::ThreatMetrix::VerificationRequest do
   let(:attributes) do
     {
+      uuid_prefix: '0987',
       uuid: '1234-abcd',
       first_name: 'Testy',
       last_name: 'McTesterson',

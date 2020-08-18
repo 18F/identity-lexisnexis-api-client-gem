@@ -1,6 +1,7 @@
 describe LexisNexis::PhoneFinder::VerificationRequest do
   let(:attributes) do
     {
+      uuid_prefix: '0987',
       uuid: '1234-abcd',
       first_name: 'Testy',
       last_name: 'McTesterson',
@@ -17,6 +18,19 @@ describe LexisNexis::PhoneFinder::VerificationRequest do
   describe '#body' do
     it 'returns a properly formed request body' do
       expect(subject.body).to eq(Fixtures.phone_finder_request_json)
+    end
+
+    context 'without a uuid_prefix' do
+      let(:attributes) do
+        hash = super()
+        hash.delete(:uuid_prefix)
+        hash
+      end
+
+      it 'does not prepend' do
+        parsed_body = JSON.parse(subject.body, symbolize_names: true)
+        expect(parsed_body[:Settings][:Reference]).to eq(attributes[:uuid])
+      end
     end
   end
 
