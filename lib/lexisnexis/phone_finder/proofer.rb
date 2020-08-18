@@ -10,6 +10,8 @@ module LexisNexis
                           :ssn,
                           :phone
 
+      optional_attributes :uuid_prefix
+
       stage :address
 
       proof do |applicant, result|
