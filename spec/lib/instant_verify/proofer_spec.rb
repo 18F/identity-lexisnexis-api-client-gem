@@ -1,6 +1,7 @@
 describe LexisNexis::InstantVerify::Proofer do
   let(:applicant) do
     {
+      uuid_prefix: '0987',
       uuid: '1234-abcd',
       first_name: 'Testy',
       last_name: 'McTesterson',

@@ -78,7 +78,14 @@ module LexisNexis
     end
 
     def uuid
-      attributes.fetch(:uuid, SecureRandom.uuid)
+      uuid = attributes.fetch(:uuid, SecureRandom.uuid)
+      uuid_prefix = attributes[:uuid_prefix]
+
+      if uuid_prefix.present?
+        "#{uuid_prefix}:#{uuid}"
+      else
+        uuid
+      end
     end
 
     def timeout

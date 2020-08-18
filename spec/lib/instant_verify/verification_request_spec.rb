@@ -1,6 +1,7 @@
 describe LexisNexis::InstantVerify::VerificationRequest do
   let(:attributes) do
     {
+      uuid_prefix: '0987',
       uuid: '1234-abcd',
       first_name: 'Testy',
       last_name: 'McTesterson',
@@ -33,6 +34,19 @@ describe LexisNexis::InstantVerify::VerificationRequest do
       it 'sets StreetAddress2 to and empty string' do
         parsed_body = JSON.parse(subject.body, symbolize_names: true)
         expect(parsed_body[:Person][:Addresses][0][:StreetAddress2]).to eq('')
+      end
+    end
+
+    context 'without a uuid_prefix' do
+      let(:attributes) do
+        hash = super()
+        hash.delete(:uuid_prefix)
+        hash
+      end
+
+      it 'does not prepend' do
+        parsed_body = JSON.parse(subject.body, symbolize_names: true)
+        expect(parsed_body[:Settings][:Reference]).to eq(attributes[:uuid])
       end
     end
   end
