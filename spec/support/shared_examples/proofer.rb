@@ -17,7 +17,7 @@ shared_examples 'a proofer' do
   describe '#proof_applicant' do
     context 'when proofing succeeds' do
       it 'results in a successful result' do
-        subject.proof_applicant(applicant, result)
+        result = subject.proof(applicant)
 
         expect(result.success?).to eq(true)
         expect(result.errors).to be_empty
@@ -31,7 +31,7 @@ shared_examples 'a proofer' do
       end
 
       it 'results in an unsuccessful result' do
-        subject.proof_applicant(applicant, result)
+        result = subject.proof(applicant)
 
         expect(result.success?).to eq(false)
         expect(result.errors).to eq(
