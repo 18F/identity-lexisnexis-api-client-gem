@@ -6,6 +6,7 @@
     "TransactionReasonCode": {
       "Code": "invalid_transaction_initiate"
     },
+    "Reference": "1234-abcd",
     "ServerInfo": "ALANARABA01-W7D"
   },
   "Information": [
