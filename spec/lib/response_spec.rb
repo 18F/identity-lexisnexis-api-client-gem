@@ -49,9 +49,9 @@ describe LexisNexis::Response do
                 end
 
         expect(error).to be_a(LexisNexis::Response::VerificationTransactionError)
-        expect(error.message).to include(
-          "Response error with code 'invalid_transaction_initiate'"
-        )
+        expect(error.message).to include("5556787618334595970")
+        expect(error.message).to include("1234-abcd")
+        expect(error.message).to include("invalid_transaction_initiate")
         expect(error.message).to include(JSON.parse(response_body)['Information'].to_json)
       end
     end

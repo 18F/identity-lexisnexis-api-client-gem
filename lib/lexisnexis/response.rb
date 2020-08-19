@@ -49,9 +49,13 @@ module LexisNexis
     def handle_verification_transaction_error
       return unless verification_status == 'error'
 
+      conversation_id = response_body.dig('Status', 'ConversationId')
+      reference = response_body.dig('Status', 'Reference')
       error_code = response_body.dig('Status', 'TransactionReasonCode', 'Code')
       error_information = response_body.fetch('Information', {}).to_json
-      message = "Response error with code '#{error_code}': #{error_information}"
+
+      message = "(LN ConversationId: #{conversation_id}; Reference: #{reference}) " +
+        "Response error with code '#{error_code}': #{error_information}"
       raise VerificationTransactionError, message
     end
   end

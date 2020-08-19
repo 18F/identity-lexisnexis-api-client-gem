@@ -14,9 +14,13 @@ module LexisNexis
 
     def base_error_message
       error_code = body.dig('Status', 'TransactionReasonCode', 'Code')
-      return 'Verification failed without a reason code' if error_code.nil?
+      conversation_id = body.dig('Status', 'ConversationId')
+      reference = body.dig('Status', 'Reference')
+      tracking_ids = "(LN ConversationId: #{conversation_id}; Reference: #{reference}) "
 
-      "Verification failed with code: '#{error_code}'"
+      return "#{tracking_ids} Verification failed without a reason code" if error_code.nil?
+
+      "#{tracking_ids} Verification failed with code: '#{error_code}'"
     end
 
     def product_error_messages

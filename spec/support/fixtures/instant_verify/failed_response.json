@@ -1,5 +1,6 @@
 {
   "Status": {
+    "ConversationId": "31000123456789",
     "RequestId": "13936762",
     "TransactionStatus": "failed",
     "TransactionReasonCode": {
