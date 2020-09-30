@@ -1,6 +1,7 @@
 require 'base64'
 require 'uri'
 require 'faraday'
+require 'active_support/core_ext/object/blank'
 
 module LexisNexis
   class RequestError < StandardError; end
