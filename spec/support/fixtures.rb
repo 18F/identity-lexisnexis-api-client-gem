@@ -34,14 +34,6 @@ module Fixtures
       read_fixture_file_at_path('fixtures/lexisnexis_test_data.csv')
     end
 
-    def threat_metrix_response_json
-      read_fixture_file_at_path('fixtures/threat_metrix/response.json')
-    end
-
-    def threat_metrix_failure_response_json
-      read_fixture_file_at_path('fixtures/threat_metrix/failure_response.json')
-    end
-
     private
 
     def read_fixture_file_at_path(filepath)
