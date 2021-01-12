@@ -2,6 +2,7 @@ module LexisNexis
   class Proofer < Proofer::Base
     def proof_applicant(applicant, result)
       response = send_verification_request(applicant)
+      result.transaction_id = response.conversation_id
       return if response.verification_status == 'passed'
 
       response.verification_errors.each do |key, error_message|
