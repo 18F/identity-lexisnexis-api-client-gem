@@ -23,6 +23,7 @@ shared_examples 'a proofer' do
 
         expect(result.success?).to eq(true)
         expect(result.errors).to be_empty
+        expect(result.transaction_id).to eq(conversation_id)
       end
     end
 
@@ -40,6 +41,7 @@ shared_examples 'a proofer' do
           base: ['test error'],
           Discovery: ['another test error']
         )
+        expect(result.transaction_id).to eq(conversation_id)
       end
     end
   end
