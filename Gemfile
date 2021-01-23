@@ -2,4 +2,4 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'proofer', git: 'https://github.com/18F/identity-proofer-gem.git', ref: 'd4720f7'
+gem 'proofer', github: '18F/identity-proofer-gem', branch: 'v2.7.1'
