@@ -14,6 +14,12 @@ module LexisNexis
       }
     end
 
+    def formatted_year_only
+      {
+        Year: date.year.to_s,
+      }
+    end
+
     def yyyymmdd
       date.strftime('%Y%m%d')
     end
