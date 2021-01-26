@@ -14,7 +14,7 @@ module LexisNexis
                           :state,
                           :zipcode
 
-      optional_attributes :address2, :uuid_prefix
+      optional_attributes :address2, :uuid_prefix, :dob_year_only
 
       stage :resolution
 
