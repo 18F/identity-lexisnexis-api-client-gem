@@ -1,3 +1,5 @@
+require 'logger'
+
 describe LexisNexis::InstantVerify::VerificationRequest do
   let(:attributes) do
     {
@@ -58,6 +60,21 @@ describe LexisNexis::InstantVerify::VerificationRequest do
       it 'does not send the birth month or day' do
         date_of_birth = JSON.parse(subject.body, symbolize_names: true).dig(:Person, :DateOfBirth)
         expect(date_of_birth).to_not include(:Month, :Day)
+      end
+
+      context 'when deployed in staging' do
+        let(:logger) { Logger.new('/dev/null') }
+
+        before do
+          stub_const('LoginGov::Hostdata', double(env: 'staging'))
+          stub_const('Rails', double(logger: logger))
+        end
+
+        it 'logs that it sent dob_year_only' do
+          expect(logger).to receive(:info).with(/dob_year_only/)
+
+          subject
+        end
       end
     end
   end
