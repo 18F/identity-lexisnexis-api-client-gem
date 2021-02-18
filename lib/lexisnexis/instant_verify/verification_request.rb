@@ -50,9 +50,6 @@ module LexisNexis
       def date_of_birth
         formatter = DateFormatter.new(attributes[:dob])
         if attributes[:dob_year_only]
-          if defined?(LoginGov::Hostdata) && LoginGov::Hostdata.env == 'staging' && defined?(Rails)
-            Rails.logger.info("sending dob_year_only, uuid=#{uuid}")
-          end
           formatter.formatted_year_only
         else
           formatter.formatted_date
