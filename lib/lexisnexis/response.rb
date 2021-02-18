@@ -8,8 +8,9 @@ module LexisNexis
 
     attr_reader :response
 
-    def initialize(response)
+    def initialize(response, dob_year_only: false)
       @response = response
+      @verification_error_parser = VerificationErrorParser.new(response_body, dob_year_only: dob_year_only)
       handle_unexpected_http_status_code_error
       handle_unexpected_verification_status_error
       handle_verification_transaction_error
@@ -18,11 +19,11 @@ module LexisNexis
     def verification_errors
       return {} unless verification_status == 'failed'
 
-      VerificationErrorParser.new(response_body).parsed_errors
+      verification_error_parser.parsed_errors
     end
 
     def verification_status
-      @verification_status ||= response_body.dig('Status', 'TransactionStatus')
+      verification_error_parser.verification_status
     end
 
     def conversation_id
@@ -39,6 +40,8 @@ module LexisNexis
     end
 
     private
+
+    attr_reader :verification_error_parser
 
     def handle_unexpected_http_status_code_error
       return if response.success?

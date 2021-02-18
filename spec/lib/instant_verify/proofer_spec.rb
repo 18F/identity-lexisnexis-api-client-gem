@@ -42,4 +42,78 @@ describe LexisNexis::InstantVerify::Proofer do
       end
     end
   end
+
+  subject(:instance) { LexisNexis::InstantVerify::Proofer.new }
+
+  describe '#proof' do
+    subject(:result) { instance.proof(applicant) }
+    let(:applicant) { super().merge(dob_year_only: dob_year_only) }
+
+    before do
+      stub_request(:post, verification_request.url).
+        to_return(body: response_body, status: 200)
+    end
+
+    context 'when dob_year_only is false' do
+      let(:dob_year_only) { false }
+
+      context 'when the response is a full match' do
+        let(:response_body) { Fixtures.instant_verify_success_response_json }
+
+        it 'is a successful result' do
+          expect(result.success?).to eq(true)
+          expect(result.errors).to be_empty
+        end
+      end
+
+      context 'when the response is a year-of-birth failure only' do
+        let(:response_body) { Fixtures.instant_verify_year_of_birth_fail_response_json }
+
+        it 'is a failure result' do
+          expect(result.success?).to eq(false)
+          expect(result.errors).to be_present
+        end
+      end
+
+      context 'when the response is a year-of-birth failure and a date-of-birth failure' do
+        let(:response_body) { Fixtures.instant_verify_date_of_birth_full_fail_response_json }
+
+        it 'is a failure result' do
+          expect(result.success?).to eq(false)
+          expect(result.errors).to be_present
+        end
+      end
+    end
+
+    context 'when dob_year_only is true' do
+      let(:dob_year_only) { true }
+
+      context 'when the response is a full match' do
+        let(:response_body) { Fixtures.instant_verify_success_response_json }
+
+        it 'is a successful result' do
+          expect(result.success?).to eq(true)
+          expect(result.errors).to be_empty
+        end
+      end
+
+      context 'when the response is a year-of-birth failure only' do
+        let(:response_body) { Fixtures.instant_verify_year_of_birth_fail_response_json }
+
+        it 'is a successful result' do
+          expect(result.errors).to be_empty
+          expect(result.success?).to eq(true)
+        end
+      end
+
+      context 'when the response is a year-of-birth failure and a date-of-birth failure' do
+        let(:response_body) { Fixtures.instant_verify_date_of_birth_full_fail_response_json }
+
+        it 'is a failure result' do
+          expect(result.success?).to eq(false)
+          expect(result.errors).to be_present
+        end
+      end
+    end
+  end
 end

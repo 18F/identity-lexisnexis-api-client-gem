@@ -16,13 +16,13 @@ module LexisNexis
       @url = build_request_url
     end
 
-    def send
+    def send(response_options: {})
       conn = Faraday.new do |f|
         f.options[:timeout] = timeout
       end
 
       Response.new(
-        conn.post(url, body, headers)
+        conn.post(url, body, headers), **response_options
       )
     rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
       # NOTE: This is only for when Faraday is using NET::HTTP if the adapter is changed
