@@ -29,14 +29,6 @@ describe LexisNexis::DateFormatter do
     end
   end
 
-  describe '#formatted_year_only' do
-    let(:date_string) { '04/15/2020' }
-
-    it 'is a hash' do
-      expect(date_formatter.formatted_year_only).to eq(Year: '2020')
-    end
-  end
-
   describe '#yyyymmdd' do
     let(:date_string) { '01/31/2020' }
 

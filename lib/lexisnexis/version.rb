@@ -1,3 +1,3 @@
 module LexisNexis
-  VERSION = '2.5.1.pre'.freeze
+  VERSION = '2.6.0'.freeze
 end

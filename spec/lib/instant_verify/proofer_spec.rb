@@ -15,22 +15,8 @@ describe LexisNexis::InstantVerify::Proofer do
     }
   end
   let(:verification_request) { LexisNexis::InstantVerify::VerificationRequest.new(applicant) }
-  subject(:proofer) { described_class.new }
 
   it_behaves_like 'a proofer'
-
-  describe 'proofing birth year only' do
-    let(:applicant) { super().merge(dob_year_only: true) }
-
-    it 'does not send day or month in the birthday field' do
-      stub_request(:post, verification_request.url).with do |request|
-        body = JSON.parse(request.body, symbolize_names: true)
-        expect(body.dig(:Person, :DateOfBirth)).to eq(Year: "1980")
-      end.to_return(body: Fixtures.instant_verify_success_response_json, status: 200)
-
-      subject.proof(applicant)
-    end
-  end
 
   describe '#send' do
     context 'when the request times out' do
