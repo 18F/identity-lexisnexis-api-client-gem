@@ -25,7 +25,7 @@ module LexisNexis
               Number: attributes[:ssn].gsub(/\D/, ''),
               Type: 'ssn9',
             },
-            DateOfBirth: date_of_birth,
+            DateOfBirth: DateFormatter.new(attributes[:dob]).formatted_date,
             Addresses: [formatted_address],
           },
         }.to_json
@@ -45,15 +45,6 @@ module LexisNexis
           Country: 'US',
           Context: 'primary',
         }
-      end
-
-      def date_of_birth
-        formatter = DateFormatter.new(attributes[:dob])
-        if attributes[:dob_year_only]
-          formatter.formatted_year_only
-        else
-          formatter.formatted_date
-        end
       end
     end
   end

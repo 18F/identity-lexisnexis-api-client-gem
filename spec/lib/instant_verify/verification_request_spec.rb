@@ -49,17 +49,6 @@ describe LexisNexis::InstantVerify::VerificationRequest do
         expect(parsed_body[:Settings][:Reference]).to eq(attributes[:uuid])
       end
     end
-
-    context 'when dob_year_only is true' do
-      let(:attributes) do
-        super().merge(dob_year_only: true)
-      end
-
-      it 'does not send the birth month or day' do
-        date_of_birth = JSON.parse(subject.body, symbolize_names: true).dig(:Person, :DateOfBirth)
-        expect(date_of_birth).to_not include(:Month, :Day)
-      end
-    end
   end
 
   describe '#url' do
