@@ -8,6 +8,8 @@ module LexisNexis
 
     attr_reader :response
 
+    # @param [Boolean] dob_year_only
+    # @see VerificationErrorParser#initialize
     def initialize(response, dob_year_only: false)
       @response = response
       @verification_error_parser = VerificationErrorParser.new(response_body, dob_year_only: dob_year_only)

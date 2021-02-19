@@ -2,6 +2,7 @@ module LexisNexis
   class VerificationErrorParser
     attr_reader :body
 
+    # @param [Boolean] dob_year_only when true, only enforce that the year from the date of birth must match
     def initialize(response_body, dob_year_only: false)
       @body = response_body
       @dob_year_only = dob_year_only

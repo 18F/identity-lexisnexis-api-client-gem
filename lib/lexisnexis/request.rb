@@ -16,6 +16,9 @@ module LexisNexis
       @url = build_request_url
     end
 
+    # @see Response#initialize
+    # @param [Hash<Symbol, Object>] response_options a hash of options for the Response class
+    #   * +:dob_year_only+
     def send(response_options: {})
       conn = Faraday.new do |f|
         f.options[:timeout] = timeout
