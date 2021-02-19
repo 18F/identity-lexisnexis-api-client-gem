@@ -20,6 +20,16 @@ module Fixtures
       JSON.parse(raw).to_json
     end
 
+    def instant_verify_year_of_birth_fail_response_json
+      raw = read_fixture_file_at_path('fixtures/instant_verify/year_of_birth_fail_response.json')
+      JSON.parse(raw).to_json
+    end
+
+    def instant_verify_date_of_birth_full_fail_response_json
+      raw = read_fixture_file_at_path('fixtures/instant_verify/date_of_birth_full_fail_response.json')
+      JSON.parse(raw).to_json
+    end
+
     def phone_finder_request_json
       raw = read_fixture_file_at_path('fixtures/phone_finder/request.json')
       JSON.parse(raw).to_json

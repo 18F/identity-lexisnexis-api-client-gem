@@ -37,6 +37,14 @@
           "ItemStatus": "pass"
         },
         {
+          "ItemName": "DOBFullVerified",
+          "ItemStatus": "pass"
+        },
+        {
+          "ItemName": "DOBYearVerified",
+          "ItemStatus": "pass"
+        },
+        {
           "ItemName": "OFAC",
           "ItemStatus": "pass",
           "ItemReason": {

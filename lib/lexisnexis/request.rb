@@ -16,13 +16,16 @@ module LexisNexis
       @url = build_request_url
     end
 
-    def send
+    # @see Response#initialize
+    # @param [Hash<Symbol, Object>] response_options a hash of options for the Response class
+    #   * +:dob_year_only+
+    def send(response_options: {})
       conn = Faraday.new do |f|
         f.options[:timeout] = timeout
       end
 
       Response.new(
-        conn.post(url, body, headers)
+        conn.post(url, body, headers), **response_options
       )
     rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
       # NOTE: This is only for when Faraday is using NET::HTTP if the adapter is changed

@@ -14,7 +14,7 @@ module LexisNexis
                           :state,
                           :zipcode
 
-      optional_attributes :address2, :uuid_prefix
+      optional_attributes :address2, :uuid_prefix, :dob_year_only
 
       stage :resolution
 
@@ -23,7 +23,11 @@ module LexisNexis
       end
 
       def send_verification_request(applicant)
-        VerificationRequest.new(applicant).send
+        VerificationRequest.new(applicant).send(
+          response_options: {
+            dob_year_only: applicant[:dob_year_only],
+          },
+        )
       end
     end
   end
