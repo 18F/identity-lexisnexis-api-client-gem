@@ -12,10 +12,14 @@ module LexisNexis
     # @see VerificationErrorParser#initialize
     def initialize(response, dob_year_only: false)
       @response = response
-      @verification_error_parser = VerificationErrorParser.new(response_body, dob_year_only: dob_year_only)
+      @dob_year_only = dob_year_only
       handle_unexpected_http_status_code_error
       handle_unexpected_verification_status_error
       handle_verification_transaction_error
+    end
+
+    def dob_year_only?
+      @dob_year_only
     end
 
     def verification_errors
@@ -43,7 +47,9 @@ module LexisNexis
 
     private
 
-    attr_reader :verification_error_parser
+    def verification_error_parser
+      @verification_error_parser ||= VerificationErrorParser.new(response_body, dob_year_only: dob_year_only?)
+    end
 
     def handle_unexpected_http_status_code_error
       return if response.success?
