@@ -58,14 +58,14 @@ module LexisNexis
     end
 
     # if DOBYearVerified passes, but DOBFullVerified fails, we can still allow a pass
-    # @return [Boolean]
     def instant_verify_dob_year_only_pass?(items)
+      dob_full_verified = items.find { |item| item['ItemName'] == 'DOBFullVerified' }
       dob_year_verified = items.find { |item| item['ItemName'] == 'DOBYearVerified' }
-      # in this limited case, we essentially ignore this item
-      _dob_full_verified = items.find { |item| item['ItemName'] == 'DOBFullVerified' }
       other_checks = items.reject { |item| %w[DOBYearVerified DOBFullVerified].include?(item['ItemName']) }
 
-      item_passed?(dob_year_verified) && other_checks.all? { |item| item_passed?(item) }
+      dob_full_verified.present? &&
+        item_passed?(dob_year_verified) &&
+        other_checks.all? { |item| item_passed?(item) }
     end
 
     def item_passed?(item)
