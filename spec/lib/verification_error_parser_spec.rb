@@ -11,8 +11,8 @@ describe LexisNexis::VerificationErrorParser do
       expect(errors[:base]).to include("1234-abcd")
 
       expect(errors[:Discovery]).to eq(nil) # This should be absent since it passed
-      expect(errors[:SomeOtherProduct]).to eq(response_body['Products'][1].to_json)
-      expect(errors[:InstantVerify]).to eq(response_body['Products'][2].to_json)
+      expect(errors[:SomeOtherProduct]).to eq(response_body['Products'][1])
+      expect(errors[:InstantVerify]).to eq(response_body['Products'][2])
     end
   end
 
