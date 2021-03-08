@@ -1,5 +1,23 @@
 module LexisNexis
   class Proofer < Proofer::Base
+    Config = Struct.new(
+      :instant_verify_workflow,
+      :phone_finder_workflow,
+      :account_id,
+      :base_url,
+      :username,
+      :password,
+      :request_mode,
+      :request_timeout,
+      keyword_init: true
+    )
+
+    attr_reader :config
+
+    def initialize(**attrs)
+      @config = Config.new(**attrs)
+    end
+
     def proof_applicant(applicant, result)
       response = send_verification_request(applicant)
       result.transaction_id = response.conversation_id

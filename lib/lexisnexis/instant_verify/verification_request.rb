@@ -18,30 +18,30 @@ module LexisNexis
           },
           Person: {
             Name: {
-              FirstName: attributes[:first_name],
-              LastName: attributes[:last_name],
+              FirstName: applicant[:first_name],
+              LastName: applicant[:last_name],
             },
             SSN: {
-              Number: attributes[:ssn].gsub(/\D/, ''),
+              Number: applicant[:ssn].gsub(/\D/, ''),
               Type: 'ssn9',
             },
-            DateOfBirth: DateFormatter.new(attributes[:dob]).formatted_date,
+            DateOfBirth: DateFormatter.new(applicant[:dob]).formatted_date,
             Addresses: [formatted_address],
           },
         }.to_json
       end
 
       def workflow_name
-        ENV.fetch('lexisnexis_instant_verify_workflow')
+        config.instant_verify_workflow
       end
 
       def formatted_address
         {
-          StreetAddress1: attributes[:address1],
-          StreetAddress2: attributes[:address2] || '',
-          City: attributes[:city],
-          State: attributes[:state],
-          Zip5: attributes[:zipcode].match(/^\d{5}/).to_s,
+          StreetAddress1: applicant[:address1],
+          StreetAddress2: applicant[:address2] || '',
+          City: applicant[:city],
+          State: applicant[:state],
+          Zip5: applicant[:zipcode].match(/^\d{5}/).to_s,
           Country: 'US',
           Context: 'primary',
         }

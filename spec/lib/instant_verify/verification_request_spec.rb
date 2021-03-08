@@ -1,5 +1,5 @@
 describe LexisNexis::InstantVerify::VerificationRequest do
-  let(:attributes) do
+  let(:applicant) do
     {
       uuid_prefix: '0987',
       uuid: '1234-abcd',
@@ -15,7 +15,7 @@ describe LexisNexis::InstantVerify::VerificationRequest do
     }
   end
   let(:response_body) { Fixtures.instant_verify_success_response_json }
-  subject { described_class.new(attributes) }
+  subject { described_class.new(applicant: applicant, config: example_config) }
 
   it_behaves_like 'a request'
 
@@ -25,7 +25,7 @@ describe LexisNexis::InstantVerify::VerificationRequest do
     end
 
     context 'without an address line 2' do
-      let(:attributes) do
+      let(:applicant) do
         hash = super()
         hash.delete(:address2)
         hash
@@ -38,7 +38,7 @@ describe LexisNexis::InstantVerify::VerificationRequest do
     end
 
     context 'without a uuid_prefix' do
-      let(:attributes) do
+      let(:applicant) do
         hash = super()
         hash.delete(:uuid_prefix)
         hash
@@ -46,7 +46,7 @@ describe LexisNexis::InstantVerify::VerificationRequest do
 
       it 'does not prepend' do
         parsed_body = JSON.parse(subject.body, symbolize_names: true)
-        expect(parsed_body[:Settings][:Reference]).to eq(attributes[:uuid])
+        expect(parsed_body[:Settings][:Reference]).to eq(applicant[:uuid])
       end
     end
   end

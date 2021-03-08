@@ -12,7 +12,7 @@ shared_examples 'a proofer' do
 
     allow(verification_request).to receive(:send).and_return(response)
     allow(verification_request.class).to receive(:new).
-      with(applicant).
+      with(applicant: applicant, config: kind_of(LexisNexis::Proofer::Config)).
       and_return(verification_request)
   end
 

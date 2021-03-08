@@ -7,10 +7,11 @@ module LexisNexis
   class RequestError < StandardError; end
 
   class Request
-    attr_reader :attributes, :url, :headers, :body
+    attr_reader :config, :applicant, :url, :headers, :body
 
-    def initialize(attributes)
-      @attributes = attributes
+    def initialize(config:, applicant:)
+      @config = config
+      @applicant = applicant
       @body = build_request_body
       @headers = build_request_headers
       @url = build_request_url
@@ -22,7 +23,7 @@ module LexisNexis
     def send(response_options: {})
       conn = Faraday.new do |f|
         f.options[:timeout] = timeout
-        f.basic_auth ENV.fetch('lexisnexis_username'), ENV.fetch('lexisnexis_password')
+        f.basic_auth config.username, config.password
       end
 
       Response.new(
@@ -43,11 +44,11 @@ module LexisNexis
     private
 
     def account_number
-      ENV.fetch('lexisnexis_account_id')
+      config.account_id
     end
 
     def base_url
-      ENV.fetch('lexisnexis_base_url')
+      config.base_url
     end
 
     def build_request_headers
@@ -68,7 +69,7 @@ module LexisNexis
     end
 
     def mode
-      ENV.fetch('lexisnexis_request_mode')
+      config.request_mode
     end
 
     def url_request_path
@@ -76,8 +77,8 @@ module LexisNexis
     end
 
     def uuid
-      uuid = attributes.fetch(:uuid, SecureRandom.uuid)
-      uuid_prefix = attributes[:uuid_prefix]
+      uuid = applicant.fetch(:uuid, SecureRandom.uuid)
+      uuid_prefix = applicant[:uuid_prefix]
 
       if uuid_prefix.present?
         "#{uuid_prefix}:#{uuid}"
@@ -87,7 +88,7 @@ module LexisNexis
     end
 
     def timeout
-      ENV.fetch('LEXISNEXIS_REQUEST_TIMEOUT', 5).to_i
+      (config.request_timeout || 5).to_i
     end
   end
 end
