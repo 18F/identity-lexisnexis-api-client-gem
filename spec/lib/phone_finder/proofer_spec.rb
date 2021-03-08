@@ -10,11 +10,15 @@ describe LexisNexis::PhoneFinder::Proofer do
       phone: '5551231234',
     }
   end
-  let(:verification_request) { LexisNexis::PhoneFinder::VerificationRequest.new(applicant) }
+  let(:verification_request) do
+    LexisNexis::PhoneFinder::VerificationRequest.new(applicant: applicant, config: example_config)
+  end
 
   it_behaves_like 'a proofer'
 
-  subject(:instance) { LexisNexis::PhoneFinder::Proofer.new }
+  subject(:instance) do
+    LexisNexis::PhoneFinder::Proofer.new(**example_config.to_h)
+  end
 
   describe '#proof' do
     subject(:result) { instance.proof(applicant) }

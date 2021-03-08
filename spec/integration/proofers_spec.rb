@@ -1,14 +1,6 @@
 require 'csv'
 
 describe 'LexisNexis Proofers' do
-  before(:all) do
-    Dotenv.overload('.env')
-  end
-
-  after(:all) do
-    Dotenv.overload('.env.test')
-  end
-
   CSV.parse(Fixtures.lexisnexis_test_data, headers: true).each_with_index do |datum, index|
     context "test case #{index}" do
       let(:applicant) do

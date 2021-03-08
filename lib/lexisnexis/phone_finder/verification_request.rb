@@ -14,17 +14,17 @@ module LexisNexis
           },
           Person: {
             Name: {
-              FirstName: attributes[:first_name],
-              LastName: attributes[:last_name],
+              FirstName: applicant[:first_name],
+              LastName: applicant[:last_name],
             },
             SSN: {
-              Number: attributes[:ssn].gsub(/\D/, ''),
+              Number: applicant[:ssn].gsub(/\D/, ''),
               Type: 'ssn9',
             },
-            DateOfBirth: DateFormatter.new(attributes[:dob]).formatted_date,
+            DateOfBirth: DateFormatter.new(applicant[:dob]).formatted_date,
             Phones: [
               {
-                Number: attributes[:phone],
+                Number: applicant[:phone],
               },
             ],
           },
@@ -32,7 +32,7 @@ module LexisNexis
       end
 
       def workflow_name
-        ENV.fetch('lexisnexis_phone_finder_workflow')
+        config.phone_finder_workflow
       end
     end
   end

@@ -14,7 +14,9 @@ describe LexisNexis::InstantVerify::Proofer do
       zipcode: '70802-12345',
     }
   end
-  let(:verification_request) { LexisNexis::InstantVerify::VerificationRequest.new(applicant) }
+  let(:verification_request) do
+    LexisNexis::InstantVerify::VerificationRequest.new(applicant: applicant, config: example_config)
+  end
 
   it_behaves_like 'a proofer'
 
@@ -43,7 +45,7 @@ describe LexisNexis::InstantVerify::Proofer do
     end
   end
 
-  subject(:instance) { LexisNexis::InstantVerify::Proofer.new }
+  subject(:instance) { LexisNexis::InstantVerify::Proofer.new(**example_config.to_h) }
 
   describe '#proof' do
     subject(:result) { instance.proof(applicant) }

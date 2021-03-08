@@ -23,7 +23,7 @@ module LexisNexis
       end
 
       def send_verification_request(applicant)
-        VerificationRequest.new(applicant).send(
+        VerificationRequest.new(config: config, applicant: applicant).send(
           response_options: {
             dob_year_only: applicant[:dob_year_only],
           },
