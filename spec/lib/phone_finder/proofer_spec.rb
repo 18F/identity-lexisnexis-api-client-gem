@@ -13,4 +13,27 @@ describe LexisNexis::PhoneFinder::Proofer do
   let(:verification_request) { LexisNexis::PhoneFinder::VerificationRequest.new(applicant) }
 
   it_behaves_like 'a proofer'
+
+  subject(:instance) { LexisNexis::PhoneFinder::Proofer.new }
+
+  describe '#proof' do
+    subject(:result) { instance.proof(applicant) }
+
+    before do
+      stub_request(:post, verification_request.url).
+        to_return(body: response_body, status: 200)
+    end
+
+    context 'when the response is a failure' do
+      let(:response_body) { Fixtures.instant_verify_date_of_birth_full_fail_response_json }
+
+      it 'is a failure result' do
+        expect(result.success?).to eq(false)
+        expect(result.errors).to include(
+          base: include(a_kind_of(String)),
+          'Execute Instant Verify': include(a_kind_of(Hash))
+        )
+      end
+    end
+  end
 end

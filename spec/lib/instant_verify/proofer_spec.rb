@@ -71,7 +71,10 @@ describe LexisNexis::InstantVerify::Proofer do
 
         it 'is a failure result' do
           expect(result.success?).to eq(false)
-          expect(result.errors).to be_present
+          expect(result.errors).to include(
+            base: include(a_kind_of(String)),
+            'Execute Instant Verify': include(a_kind_of(Hash))
+          )
         end
       end
 
@@ -80,7 +83,10 @@ describe LexisNexis::InstantVerify::Proofer do
 
         it 'is a failure result' do
           expect(result.success?).to eq(false)
-          expect(result.errors).to be_present
+          expect(result.errors).to include(
+            base: include(a_kind_of(String)),
+            'Execute Instant Verify': include(a_kind_of(Hash))
+          )
         end
       end
     end
@@ -111,7 +117,10 @@ describe LexisNexis::InstantVerify::Proofer do
 
         it 'is a failure result' do
           expect(result.success?).to eq(false)
-          expect(result.errors).to be_present
+          expect(result.errors).to include(
+            base: include(a_kind_of(String)),
+            'Execute Instant Verify': include(a_kind_of(Hash))
+          )
         end
       end
     end

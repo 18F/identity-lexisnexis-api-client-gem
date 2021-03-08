@@ -53,7 +53,7 @@ module LexisNexis
         end
 
         key = product.fetch('ExecutedStepName').to_sym
-        error_messages[key] = product.to_json
+        error_messages[key] = product
       end
     end
 

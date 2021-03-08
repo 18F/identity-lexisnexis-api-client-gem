@@ -40,6 +40,11 @@ module Fixtures
       JSON.parse(raw).to_json
     end
 
+    def phone_finder_fail_response_json
+      raw = read_fixture_file_at_path('fixtures/phone_finder/fail_response.json')
+      JSON.parse(raw).to_json
+    end
+
     def lexisnexis_test_data
       read_fixture_file_at_path('fixtures/lexisnexis_test_data.csv')
     end
