@@ -22,6 +22,7 @@ module LexisNexis
     def send(response_options: {})
       conn = Faraday.new do |f|
         f.options[:timeout] = timeout
+        f.basic_auth ENV.fetch('lexisnexis_username'), ENV.fetch('lexisnexis_password')
       end
 
       Response.new(
@@ -51,7 +52,6 @@ module LexisNexis
 
     def build_request_headers
       {
-        'Authorization' => "Basic #{encoded_credentials}",
         'Content-Type' => 'application/json',
       }
     end
@@ -65,12 +65,6 @@ module LexisNexis
         base_url,
         url_request_path
       ).to_s
-    end
-
-    def encoded_credentials
-      Base64.strict_encode64(
-        "#{ENV.fetch('lexisnexis_username')}:#{ENV.fetch('lexisnexis_password')}"
-      )
     end
 
     def mode
