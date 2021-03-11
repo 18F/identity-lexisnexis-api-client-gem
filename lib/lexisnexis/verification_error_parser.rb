@@ -6,6 +6,8 @@ module LexisNexis
     def initialize(response_body, dob_year_only: false)
       @body = response_body
       @dob_year_only = dob_year_only
+      @base_error_message = parse_base_error_message
+      @product_error_messages = parse_product_error_messages
     end
 
     def dob_year_only?
@@ -30,7 +32,9 @@ module LexisNexis
 
     private
 
-    def base_error_message
+    attr_reader :base_error_message, :product_error_messages
+
+    def parse_base_error_message
       error_code = body.dig('Status', 'TransactionReasonCode', 'Code')
       conversation_id = body.dig('Status', 'ConversationId')
       reference = body.dig('Status', 'Reference')
@@ -41,15 +45,25 @@ module LexisNexis
       "#{tracking_ids} Verification failed with code: '#{error_code}'"
     end
 
-    def product_error_messages
+    def parse_product_error_messages
       products = body['Products']
       return { products: 'Products missing from response' } if products.nil?
 
       products.each_with_object({}) do |product, error_messages|
-        next if product['ProductStatus'] == 'pass'
+        if product['ProductType'] == 'InstantVerify'
+          original_passed = (product['ProductStatus'] == 'pass')
+          passed_partial_dob = instant_verify_dob_year_only_pass?(product['Items'])
 
-        if dob_year_only? && product['ProductType'] == 'InstantVerify'
-          next if instant_verify_dob_year_only_pass?(product['Items'])
+          Rails.logger.info({
+            name: 'lexisnexis_partial_dob',
+            original_passed: original_passed,
+            passed_partial_dob: passed_partial_dob,
+            partial_dob_override_enabled: dob_year_only?,
+          }.to_json) if defined?(Rails) && Rails.logger
+
+          next if original_passed || (dob_year_only? && passed_partial_dob)
+        else
+          next if product['ProductStatus'] == 'pass'
         end
 
         key = product.fetch('ExecutedStepName').to_sym

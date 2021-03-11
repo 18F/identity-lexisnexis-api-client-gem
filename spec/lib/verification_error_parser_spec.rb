@@ -1,6 +1,34 @@
-describe LexisNexis::VerificationErrorParser do
+require 'logger'
+
+RSpec.describe LexisNexis::VerificationErrorParser do
   let(:response_body) { JSON.parse(Fixtures.instant_verify_failure_response_json) }
   subject(:error_parser) { described_class.new(response_body) }
+
+  describe '#initialize' do
+    let(:response_body) { JSON.parse(Fixtures.instant_verify_year_of_birth_fail_response_json) }
+
+    context 'outside of Rails' do
+      it { expect(error_parser).to be }
+    end
+
+    context 'within a Rails app' do
+      let(:logger) { Logger.new('/dev/null') }
+      before { stub_const('Rails', double(logger: logger)) }
+
+      it 'logs a message formatted as JSON' do
+        expect(logger).to receive(:info) do |arg|
+          expect(JSON.parse(arg, symbolize_names: true)).to eq(
+            name: 'lexisnexis_partial_dob',
+            original_passed: false,
+            passed_partial_dob: true,
+            partial_dob_override_enabled: false,
+          )
+        end
+
+        expect(error_parser).to be
+      end
+    end
+  end
 
   describe '#parsed_errors' do
     subject(:errors) { error_parser.parsed_errors }
