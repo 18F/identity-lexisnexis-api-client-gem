@@ -22,7 +22,11 @@ module LexisNexis
     #   * +:dob_year_only+
     def send(response_options: {})
       conn = Faraday.new do |f|
-        f.options[:timeout] = timeout
+        f.options.timeout = timeout
+        f.options.read_timeout = timeout
+        f.options.open_timeout = timeout
+        f.options.write_timeout = timeout
+
         f.basic_auth config.username, config.password
       end
 
