@@ -1,6 +1,9 @@
+require 'proofer'
+require 'redacted_struct'
+
 module LexisNexis
   class Proofer < Proofer::Base
-    Config = Struct.new(
+    Config = RedactedStruct.new(
       :instant_verify_workflow,
       :phone_finder_workflow,
       :account_id,
@@ -9,7 +12,14 @@ module LexisNexis
       :password,
       :request_mode,
       :request_timeout,
-      keyword_init: true
+      keyword_init: true,
+      allowed_members: [
+        :instant_verify_workflow,
+        :phone_finder_workflow,
+        :base_url,
+        :request_mode,
+        :request_timeout,
+      ]
     )
 
     attr_reader :config

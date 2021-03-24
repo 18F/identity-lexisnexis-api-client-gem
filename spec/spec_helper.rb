@@ -4,7 +4,6 @@ $LOAD_PATH.unshift File.dirname(__FILE__) + '/../lib'
 require 'pry-byebug'
 require 'webmock/rspec'
 
-require 'proofer'
 require 'lexisnexis'
 
 Dir[File.dirname(__FILE__) + '/support/**/*.rb'].sort.each { |file| require file }
