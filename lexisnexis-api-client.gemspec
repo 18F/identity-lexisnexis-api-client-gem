@@ -27,6 +27,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency('faraday')
   s.add_dependency('activesupport')
+  s.add_dependency('proofer') # git dependency
+  s.add_dependency('redacted_struct', '>= 1.0.0')
 
   s.add_development_dependency('pry-byebug')
   s.add_development_dependency('rake')
