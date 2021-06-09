@@ -34,6 +34,10 @@ module LexisNexis
       def workflow_name
         config.phone_finder_workflow
       end
+
+      def metric_name
+        'lexis_nexis_phone_finder'
+      end
     end
   end
 end

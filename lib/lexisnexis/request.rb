@@ -2,6 +2,7 @@ require 'base64'
 require 'uri'
 require 'faraday'
 require 'active_support/core_ext/object/blank'
+require 'active_support/notifications'
 
 module LexisNexis
   class RequestError < StandardError; end
@@ -22,6 +23,7 @@ module LexisNexis
     #   * +:dob_year_only+
     def send(response_options: {})
       conn = Faraday.new do |f|
+        f.request :instrumentation, name: 'request_metric.faraday'
         f.options.timeout = timeout
         f.options.read_timeout = timeout
         f.options.open_timeout = timeout
@@ -31,7 +33,10 @@ module LexisNexis
       end
 
       Response.new(
-        conn.post(url, body, headers), **response_options
+        conn.post(url, body, headers) do |req|
+          req.options.context = { service_name: metric_name }
+        end,
+        **response_options
       )
     rescue Faraday::TimeoutError, Faraday::ConnectionFailed => e
       # NOTE: This is only for when Faraday is using NET::HTTP if the adapter is changed
@@ -93,6 +98,10 @@ module LexisNexis
 
     def timeout
       (config.request_timeout || 5).to_i
+    end
+
+    def metric_name
+      raise NotImplementedError
     end
   end
 end

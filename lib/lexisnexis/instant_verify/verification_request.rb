@@ -46,6 +46,10 @@ module LexisNexis
           Context: 'primary',
         }
       end
+
+      def metric_name
+        'lexis_nexis_instant_verify'
+      end
     end
   end
 end
